@@ -1,17 +1,23 @@
 {
   "name": "yengec/cargo",
   "description": "PE Cargo SDK",
-  "version": "master",
+  "version": "dev-master",
   "authors": [
     {
       "name": "İbrahim Ş. Örencik",
       "email": "o@yedincisenol.com"
     }
   ],
-  "require": {},
+  "require": {
+    "nesbot/carbon": "^2.0",
+    "guzzlehttp/guzzle": "^7.5"
+  },
   "autoload": {
     "psr-4": {
       "Yengec\\Cargo\\": "src"
     }
+  },
+  "require-dev": {
+    "symfony/var-dumper": "^5.2"
   }
 }

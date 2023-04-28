@@ -30,6 +30,7 @@ class Order implements OrderInterface
     protected ?float $duty;
     protected ?Billing $billing;
     protected ?WareHouse $wareHouse;
+    protected ?string $addressId;
 
     /**
      * Order constructor.
@@ -57,6 +58,7 @@ class Order implements OrderInterface
      * @param float|null $cargoPrice
      * @param float|null $duty
      * @param WareHouse $wareHouse
+     * @param string|null $addressId
      */
     public function __construct(
         string $identity,
@@ -82,7 +84,8 @@ class Order implements OrderInterface
         Billing $billing,
         ?float $cargoPrice,
         ?float $duty,
-        WareHouse $wareHouse
+        WareHouse $wareHouse,
+        ?string $addressId,
     ) {
         $this->setIdentity($identity);
         $this->setReceiver($receiver);
@@ -108,6 +111,7 @@ class Order implements OrderInterface
         $this->setCargoPrice($cargoPrice);
         $this->setDuty($duty);
         $this->setWareHouse($wareHouse);
+        $this->setAddressId($addressId);
     }
 
     /**
@@ -233,7 +237,7 @@ class Order implements OrderInterface
             'items'     => $this->getItems()->toArray(),
             'method'    => $this->getMethod(),
             'sender'    => $this->getSender() ? $this->getSender()->toArray() : [],
-            'ship_at'   => optional($this->getShipAt())->format('Y-m-d H:i'),
+            'ship_at'   => $this->getShipAt()->format('Y-m-d H:i') ?? null,
             'address'   => $this->getAddress(),
             'billing'   => $this->getBilling() ? $this->getBilling()->toArray() : [],
             'identity'  => $this->getIdentity(),
@@ -249,6 +253,7 @@ class Order implements OrderInterface
             'export_method' => $this->getExportMethod(),
             'export_reason' => $this->getExportReason(),
             'label_description' => $this->getLabelDescription(),
+            'address_id'    => $this->getAddressId(),
         ];
     }
 
@@ -432,7 +437,7 @@ class Order implements OrderInterface
      */
     public function getId(): string
     {
-         return $this->id;
+        return $this->id;
     }
 
     /**
@@ -541,5 +546,21 @@ class Order implements OrderInterface
     public function getWareHouse(): ?WareHouse
     {
         return $this->wareHouse;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAddressId(): ?string
+    {
+        return $this->addressId;
+    }
+
+    /**
+     * @param string|null $addressId
+     */
+    public function setAddressId(?string $addressId): void
+    {
+        $this->addressId = $addressId;
     }
 }

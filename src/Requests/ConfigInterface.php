@@ -29,4 +29,14 @@ interface ConfigInterface
     public function getPtt(): array;
 
     public function get(string $service): array;
+
+    public function setHepsijet(
+        string $username,
+        string $password,
+        string $userCode,
+        string $warehouseId,
+        string $companyName
+    ): void;
+
+    public function getHepsijet(): array;
 }
