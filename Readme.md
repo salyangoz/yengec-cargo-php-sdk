@@ -39,7 +39,16 @@ Hangi kargo servisini kullanmak istiyorsanız, o servisin ilgili yöntemini kull
 </details>
 
 ```php
+use Carbon\Carbon;
+use Yengec\Cargo\Client;
 use Yengec\Cargo\Requests\Config;
+use Yengec\Cargo\Requests\Create\Billing;
+use Yengec\Cargo\Requests\Create\Order;
+use Yengec\Cargo\Requests\Create\OrderCollection;
+use Yengec\Cargo\Requests\Create\OrderItem;
+use Yengec\Cargo\Requests\Create\OrderItemCollection;
+use Yengec\Cargo\Requests\Create\OrderSender;
+use Yengec\Cargo\Requests\Create\WareHouse;
 use Yengec\Cargo\Requests\RequestConfig;
 
 $cargoService->setHepsijet(
@@ -160,4 +169,18 @@ $create = $client->create(
 ## Kargo Gönderisi Sorgulama
 
 ```php
+use Yengec\Cargo\Requests\Query\OrderCollection;
+
+$id = 'YNC123456789';
+
 $client = new Client($requestConfig);
+$queryOrders = new QueryOrderCollection();
+
+$queryOrders->add(orderIdentity: $id);
+
+$query = $client->query(
+    requestConfig: $requestConfig,
+    orders: $queryOrders
+);
+```
+
