@@ -52,6 +52,8 @@ use Yengec\Cargo\Requests\Create\OrderSender;
 use Yengec\Cargo\Requests\Create\WareHouse;
 use Yengec\Cargo\Requests\RequestConfig;
 
+$cargoService = new Config();
+
 $cargoService->setHepsijet(
     username: '******',
     password: '******',
@@ -170,12 +172,31 @@ $create = $client->create(
 ## Kargo Gönderisi Sorgulama
 
 ```php
+use Yengec\Cargo\Client;
+use Yengec\Cargo\Requests\Config;
 use Yengec\Cargo\Requests\Query\OrderCollection;
+use Yengec\Cargo\Requests\RequestConfig;
 
 $id = 'YNC123456789';
 
+$cargoService = new Config();
+$cargoService->setHepsijet(
+    username: '******',
+    password: '******',
+    userCode: '******',
+    warehouseId: '***',
+    companyName: '*****'
+);
+
+$requestConfig = new RequestConfig(
+    mode: 'test',
+    language: 'tr',
+    service: 'hepsijet',
+    config: $cargoService
+);
+
 $client = new Client($requestConfig);
-$queryOrders = new QueryOrderCollection();
+$queryOrders = new OrderCollection();
 
 $queryOrders->add(orderIdentity: $id);
 
