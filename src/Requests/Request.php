@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 abstract class Request implements RequestInterface
 {
     public const BASE_URI = 'https://cargo.yengec.co/';
-    public const TEST_BASE_URI = 'https://cargo-test.yengec.co/';
+    public const TEST_BASE_URI = 'http://127.0.0.1:3000/';
 
     protected string $language;
     protected string $service;

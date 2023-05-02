@@ -273,7 +273,6 @@ class Config implements ConfigInterface
     /**
      * @param string $username
      * @param string $password
-     * @param string $userCode
      * @param string $warehouseId
      * @param string $companyName
      * @param string $companyCode
@@ -281,14 +280,14 @@ class Config implements ConfigInterface
     public function setHepsijet(
         string $username,
         string $password,
-        string $userCode,
         string $warehouseId,
-        string $companyName
+        string $companyName,
+        string $companyCode,
     ): void {
         $this->configs[self::SERVICE_HEPSIJET] = [
             'username' => $username,
             'password' => $password,
-            'company_code' => $userCode,
+            'company_code' => $companyCode,
             'warehouse_id' => $warehouseId,
             'company_name' => $companyName,
         ];

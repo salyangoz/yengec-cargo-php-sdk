@@ -1,45 +1,7 @@
-# Yengeç Cargo PHP SDK
+<?php
 
-Bu SDK ile Yengeç Cargo API servisine kolayca entegre edilebilmesi için tasarlanmıştır.
+require __DIR__ . '/../vendor/autoload.php';
 
-## İçindekiler
-- [Kurulum](#kurulum)
-- [Yapılandırma](#yapilandirma)
-- [Kargo Gönderisi Oluşturma](#kargo-gonderisi-olusturma)
-- [Kargo Gönderisi Sorgulama](#kargo-gonderisi-sorgulama)
-- [Kargo Barkod Sorgulama](#kargo-barkod-sorgulama)
-
-## Kurulum
-
-```bash
-composer require yengec/yengec-cargo
-```
-
-## Yapılandırma
-
-İlk öncelikle kargo servisini başlatmak için yapılandırma ayarlarımızı belirtmemiz gereklidir.
-Ben `hepsijet` kargosunu kullanacağım ve her servisin `oturum açma` yöntemi farklı olabilir. `Hepsijet`, basit doğrulama yöntemi kullanmaktadır.
-
-Hangi kargo servisini kullanmak istiyorsanız, o servisin ilgili yöntemini kullanarak başlatmanız gerekmektedir.
-
-<details>
-  <summary>Kullanılabilir Kargo Servisleri</summary>
-
-    - Yurtici
-    - Mng
-    - Ups
-    - Aras
-    - Ptt
-    - Surat
-    - Sendeo
-    - EasyShip
-    - UpsGlobal
-    - Hepsijet
-
-> Dipnot, her yöntem set ile başlamalıdır. Örneğin `setHepsijet` gibi.
-</details>
-
-```php
 use Carbon\Carbon;
 use Yengec\Cargo\Client;
 use Yengec\Cargo\Requests\Config;
@@ -52,12 +14,14 @@ use Yengec\Cargo\Requests\Create\OrderSender;
 use Yengec\Cargo\Requests\Create\WareHouse;
 use Yengec\Cargo\Requests\RequestConfig;
 
+
+$cargoService = new Config();
 $cargoService->setHepsijet(
-    username: '******',
-    password: '******',
-    userCode: '******',
-    warehouseId: '***',
-    companyName: '*****'
+    username: 'yengec_integration',
+    password: 'admin123',
+    companyCode: 'YNGC_IZM',
+    warehouseId: '1',
+    companyName: 'Yengeç'
 );
 
 // burada da kargo servisinin hangi ortamda çalışacağını ve servisin kendisini de belirtiyoruz.
@@ -67,11 +31,8 @@ $requestConfig = new RequestConfig(
     service: 'hepsijet',
     config: $cargoService
 );
-```
 
-## Kargo Gönderisi Oluşturma
 
-```php
 // Burada kargoya verilecek olan ürünleri belirtiyoruz.
 $orderItemCollection = new OrderItemCollection();
 
@@ -100,7 +61,7 @@ $orders->add(
         countryCode: 'TR', // Alıcı ülke kodu
         currency: 'TRY', // Alıcı para birimi
         total: 100, // Alıcı toplam tutarı
-        // exportMethod: 'KARGO', // Kargo gönderim yöntemi
+        exportMethod: 'KARGO', // Kargo gönderim yöntemi
         method: 'HX_STD', // Kargo gönderim yöntemi. hepsijet için zorunlu.
         exportReason: 'SATIS',
         postalCode: '34700',
@@ -151,37 +112,4 @@ $create = $client->create(
     $orders
 );
 
-// Örnek çıktı
-/**
- * "identity" => "ync-123"
- * "status" => "created"
- * "message" => "ok"
- * "error_code" => null
- * "tracking_code" => null
- * "tracking_url" => null
- * "deci" => null
- * "parcel" => null
- * "label" => <barkod>
- * "recepiet" => null
- */
-
-```
-
-## Kargo Gönderisi Sorgulama
-
-```php
-use Yengec\Cargo\Requests\Query\OrderCollection;
-
-$id = 'YNC123456789';
-
-$client = new Client($requestConfig);
-$queryOrders = new QueryOrderCollection();
-
-$queryOrders->add(orderIdentity: $id);
-
-$query = $client->query(
-    requestConfig: $requestConfig,
-    orders: $queryOrders
-);
-```
-
+dd($create);
