@@ -9,30 +9,30 @@ use Yengec\Cargo\Requests\RequestConfig;
 
 $cargoService = new Config();
 $cargoService->setHepsijet(
-    username: 'yengec_integration',
-    password: 'admin123',
-    companyCode: 'YNGC_IZM',
-    warehouseId: '1',
-    companyName: 'Yengeç'
+    'yengec_integration',
+    'admin123',
+    '1',
+    'Yengeç',
+    'YNGC_IZM'
 );
 
 $requestConfig = new RequestConfig(
-    mode: 'test',
-    language: 'tr',
-    service: 'hepsijet',
-    config: $cargoService
+    'test',
+    'tr',
+    'hepsijet',
+    $cargoService
 );
 
-$id = 'YNC123456789';
+$id = 'ync-21232';
 
 $client = new Client($requestConfig);
 $queryOrders = new OrderCollection();
 
-$queryOrders->add(orderIdentity: $id);
+$queryOrders->add($id);
 
 $query = $client->query(
-    requestConfig: $requestConfig,
-    orders: $queryOrders
+    $requestConfig,
+    $queryOrders
 );
 
 

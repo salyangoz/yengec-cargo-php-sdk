@@ -17,19 +17,19 @@ use Yengec\Cargo\Requests\RequestConfig;
 
 $cargoService = new Config();
 $cargoService->setHepsijet(
-    username: 'yengec_integration',
-    password: 'admin123',
-    companyCode: 'YNGC_IZM',
-    warehouseId: '1',
-    companyName: 'Yengeç'
+    'yengec_integration',
+    'admin123',
+    '1',
+    'Yengeç',
+    'YNGC_IZM',
 );
 
 // burada da kargo servisinin hangi ortamda çalışacağını ve servisin kendisini de belirtiyoruz.
 $requestConfig = new RequestConfig(
-    mode: 'test',
-    language: 'tr',
-    service: 'hepsijet',
-    config: $cargoService
+    'test',
+    'tr',
+    'hepsijet',
+    $cargoService
 );
 
 
@@ -37,11 +37,11 @@ $requestConfig = new RequestConfig(
 $orderItemCollection = new OrderItemCollection();
 
 $orderItemCollection->add(new OrderItem(
-    productName: 'Yengeç Ürün',
-    quantity: 1,
-    weight: 1,
-    unitPrice: 100,
-    hsCode: '123456789',
+    'Yengeç Ürün',
+    1,
+    100,
+    '123456789',
+    1,
 ));
 
 // Şimdi kargoların içeriğini belirleyelim.
@@ -49,56 +49,56 @@ $orders =  new OrderCollection();
 
 $orders->add(
     new Order(
-        identity: 'ync-123', // Bu siparişin benzersiz kimliği
-        addressId: '123', // Sadece epsijet için zorunlu.
-        receiver: 'Yengeç', // Alıcı adı
-        address: 'Yengeç Adres', // Alıcı adresi
-        phone: '05555555555', // Alıcı telefonu
-        city: 'İstanbul', // Alıcı şehri
-        district: 'Kadıköy', // Alıcı ilçesi
-        email: 'yengec_test@yengec.co', // Alıcı emaili
-        shipAt: Carbon::createFromFormat('d/m/Y', '28/04/2023'), // Kargo gönderim tarihi
-        countryCode: 'TR', // Alıcı ülke kodu
-        currency: 'TRY', // Alıcı para birimi
-        total: 100, // Alıcı toplam tutarı
-        exportMethod: 'KARGO', // Kargo gönderim yöntemi
-        method: 'HX_STD', // Kargo gönderim yöntemi. hepsijet için zorunlu.
-        exportReason: 'SATIS',
-        postalCode: '34700',
-        sender: new OrderSender(
-            name: 'Yengeç',
-            address: "Yengeç Adres",
-            city: "İstanbul",
-            district: "Kadıköy",
-            countryCode: "TR",
-            taxNumber: "123456789",
-            phone: "05555555555",
-            voec: "123456789",
-            pva: "123456789",
-            ioss: "123456789",
+        'ync-2662202', // Bu siparişin benzersiz kimliği
+        'Yengeç', // Alıcı adı
+        'Yengeç Adres', // Alıcı adresi
+        '05555555555', // Alıcı telefonu
+        'İstanbul', // Alıcı şehri
+        'Kadıköy', // Alıcı ilçesi
+        'yengec_test@yengec.co', // Alıcı emaili
+        Carbon::createFromFormat('d/m/Y', '28/04/2023'), // Kargo gönderim tarihi
+        'TR', // Alıcı ülke kodu
+        'TRY', // Alıcı para birimi
+        100, // Alıcı toplam tutarı
+        'KARGO', // Kargo gönderim yöntemi
+        'SATIS',
+        'HX_STD', // Kargo gönderim yöntemi. hepsijet için zorunlu.
+        '34700',
+        new OrderSender(
+            'Yengeç',
+            "Yengeç Adres",
+            "İstanbul",
+            "Kadıköy",
+            "TR",
+            "123456789",
+            "05555555555",
+            "123456789",
+            "123456789",
+            "123456789",
         ),
-        orderItems: $orderItemCollection,
-        id: '123456789',
-        invoiceCode: '123456789',
-        shippingSlipDescription: 'Yengeç Kargo Açıklama',
-        billing: new Billing(
-            name: 'Yengeç',
-            phone: '05555555555',
-            address: 'Yengeç Adres',
-            postCode: '34700',
-            district: 'Kadıköy',
-            city: 'İstanbul',
-            country: 'Türkiye',
+        $orderItemCollection,
+        '123456789',
+        '123456789',
+        'Yengeç Kargo Açıklama',
+        new Billing(
+            'Yengeç',
+            '05555555555',
+            'Yengeç Adres',
+            '34700',
+            'Kadıköy',
+            'İstanbul',
+            'Türkiye',
         ),
-        cargoPrice: 10,
-        duty: 0,
-        wareHouse: new WareHouse(
-            country: "Türkiye",
-            city: "İstanbul",
-            district: "Kadıköy",
-            address: "Yengeç Adres",
-            phone: "05555555555",
-        )
+        10,
+        0,
+        new WareHouse(
+            "Türkiye",
+            "İstanbul",
+            "Kadıköy",
+            "Yengeç Adres",
+            "05555555555",
+        ),
+        '123456789',
     )
 );
 

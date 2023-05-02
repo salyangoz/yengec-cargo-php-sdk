@@ -60,7 +60,7 @@ class Order implements OrderInterface
         ?string $trackingCode,
         ?string $trackingUrl,
         ?string $label,
-        ?string $receipt,
+        ?string $receipt
     ) {
         $this->setIdentity($identity);
         $this->setStatus($status);
