@@ -237,7 +237,7 @@ class Order implements OrderInterface
             'items'     => $this->getItems()->toArray(),
             'method'    => $this->getMethod(),
             'sender'    => $this->getSender() ? $this->getSender()->toArray() : [],
-            'ship_at'   => $this->getShipAt()->format('Y-m-d H:i') ?? null,
+            'ship_at'   => $this->getShipAt() ? $this->getShipAt()->format('Y-m-d H:i') : null,
             'address'   => $this->getAddress(),
             'billing'   => $this->getBilling() ? $this->getBilling()->toArray() : [],
             'identity'  => $this->getIdentity(),
