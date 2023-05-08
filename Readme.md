@@ -1,29 +1,28 @@
-# Yengeç Cargo PHP SDK
+# Yengec Cargo PHP SDK
 
-Bu SDK ile Yengeç Cargo API servisine kolayca entegre edilebilmesi için tasarlanmıştır.
+This SDK is designed to be easily integrated into the Yengec Cargo API service.
 
 ## İçindekiler
-- [Kurulum](#kurulum)
-- [Yapılandırma](#yapilandirma)
-- [Kargo Gönderisi Oluşturma](#kargo-gonderisi-olusturma)
-- [Kargo Gönderisi Sorgulama](#kargo-gonderisi-sorgulama)
-- [Kargo Barkod Sorgulama](#kargo-barkod-sorgulama)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Creating Shipment](#creating-shipment)
+- [Cargo Shipment Query](#cargo-shipment-query)
 
-## Kurulum
+## Installation
 
 ```bash
 composer require yengec/yengec-cargo
 ```
 
-## Yapılandırma
+## Configuration
 
-İlk öncelikle kargo servisini başlatmak için yapılandırma ayarlarımızı belirtmemiz gereklidir.
-Ben `hepsijet` kargosunu kullanacağım ve her servisin `oturum açma` yöntemi farklı olabilir. `Hepsijet`, basit doğrulama yöntemi kullanmaktadır.
+First of all, we need to specify our configuration settings to start the cargo service.
+I will use the `hepsijet` cargo and the `login` method of each service may be different. `Hepsijet` uses the simple authentication method.
 
-Hangi kargo servisini kullanmak istiyorsanız, o servisin ilgili yöntemini kullanarak başlatmanız gerekmektedir.
+You must start using the relevant method of the cargo service you want to use.
 
 <details>
-  <summary>Kullanılabilir Kargo Servisleri</summary>
+  <summary>Available Shipping Services</summary>
 
     - Yurtici
     - Mng
@@ -36,7 +35,7 @@ Hangi kargo servisini kullanmak istiyorsanız, o servisin ilgili yöntemini kull
     - UpsGlobal
     - Hepsijet
 
-> Dipnot, her yöntem set ile başlamalıdır. Örneğin `setHepsijet` gibi.
+> Note, each method should start with set. For example, `setHepsijet` etc.
 </details>
 
 ```php
@@ -62,7 +61,7 @@ $cargoService->setHepsijet(
     companyName: '*****'
 );
 
-// burada da kargo servisinin hangi ortamda çalışacağını ve servisin kendisini de belirtiyoruz.
+// here we specify in which environment the cargo service will run and the service itself.
 $requestConfig = new RequestConfig(
     mode: 'test',
     language: 'tr',
@@ -71,10 +70,10 @@ $requestConfig = new RequestConfig(
 );
 ```
 
-## Kargo Gönderisi Oluşturma
+## Creating Shipment
 
 ```php
-// Burada kargoya verilecek olan ürünleri belirtiyoruz.
+// Here we specify the products to be shipped.
 $orderItemCollection = new OrderItemCollection();
 
 $orderItemCollection->add(new OrderItem(
@@ -85,7 +84,7 @@ $orderItemCollection->add(new OrderItem(
     hsCode: '123456789',
 ));
 
-// Şimdi kargoların içeriğini belirleyelim.
+// Now let's determine the contents of the cargoes.
 $orders =  new OrderCollection();
 
 $orders->add(
@@ -143,7 +142,7 @@ $orders->add(
     )
 );
 
-// Şimdi kargoları oluşturalım.
+// Let's create the cargos now.
 
 $client = new Client($requestConfig);
 
@@ -153,7 +152,7 @@ $create = $client->create(
     $orders
 );
 
-// Örnek çıktı
+// Example response
 /**
  * "identity" => "ync-123"
  * "status" => "created"
@@ -169,7 +168,7 @@ $create = $client->create(
 
 ```
 
-## Kargo Gönderisi Sorgulama
+## Cargo Shipment Query
 
 ```php
 use Yengec\Cargo\Client;

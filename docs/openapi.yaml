@@ -40,7 +40,7 @@ paths:
                   $ref: "#/components/schemas/config"
       responses:
         "200":
-          description: no response description was provided for this operation
+          description: Success response
           content:
             application/json:
               schema:
@@ -56,7 +56,7 @@ paths:
                   data:
                     type: object
         "401":
-          description: no response description was provided for this operation
+          description: Unauthenticated response
           content:
             application/json:
               schema:
@@ -201,7 +201,7 @@ paths:
                     type: string
       responses:
         default:
-          description: no response description was provided for this operation
+          description: Success response
           content:
           $ref: "#/components/responses/200"
 components:
@@ -254,7 +254,7 @@ components:
             $ref: "#/components/schemas/config"
   responses: 
     "200":
-      description: no response description was provided for this operation
+      description: Success response
       content:
         application/json:
           schema:
