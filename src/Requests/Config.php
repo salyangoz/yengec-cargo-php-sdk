@@ -282,7 +282,7 @@ class Config implements ConfigInterface
         string $password,
         string $warehouseId,
         string $companyName,
-        string $companyCode,
+        string $companyCode
     ): void {
         $this->configs[self::SERVICE_HEPSIJET] = [
             'username' => $username,
