@@ -2,7 +2,7 @@
 
 This SDK is designed to be easily integrated into the Yengec Cargo API service.
 
-## İçindekiler
+## Index
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Creating Shipment](#creating-shipment)
