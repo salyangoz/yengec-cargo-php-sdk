@@ -1,0 +1,299 @@
+openapi: 3.0.1
+info:
+  title: Yengec-cargo
+  version: v0.0.0
+servers:
+  - url: https://cargo-test.yengec.co
+  - url: https://cargo.yengec.co
+tags: []
+paths:
+  /shipment/test:
+    post:
+      summary: Test
+      description: Test cargo config
+      operationId: 8c6241b8-c681-44c7-85f2-dc874c623ec2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                language:
+                  type: string
+                service:
+                  type: string
+                  enum:
+                    - yurtici
+                    - mng
+                    - aras
+                    - ups
+                    - ptt
+                    - surat
+                    - ups-global
+                    - sendeo
+                    - hepsijet
+                mode:
+                  type: string
+                  enum:
+                    - test
+                    - live
+                config:
+                  $ref: "#/components/schemas/config"
+      responses:
+        "200":
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+                  data:
+                    type: object
+        "401":
+          description: Unauthenticated response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        example: "FAIL"
+                      message:
+                        type: string
+                        example: "Kullanıcı Adı veya Parola Hatalı"
+                  data:
+                    type: object
+
+  /shipment/create:
+    post:
+      summary: create-order
+      description: Test cargo config
+      operationId: ce57eb43-b6f1-41f5-8467-1667f78ed481
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                language:
+                  type: string
+                service:
+                  type: string
+                  enum:
+                    - yurtici
+                    - mng
+                    - aras
+                    - ups
+                    - ptt
+                    - surat
+                    - ups-global
+                    - sendeo
+                    - hepsijet
+                mode:
+                  type: string
+                  enum:
+                    - test
+                    - live
+                config:
+                  $ref: "#/components/schemas/config"
+                orders:
+                  type: array
+                  items:
+                    properties:
+                      identity:
+                        type: string
+                      city:
+                        type: string
+                      district:
+                        type: string
+                      neighbourhood:
+                        type: string
+                      address:
+                        type: string
+                      desi:
+                        type: string
+                      language:
+                        type: string
+                      address_id:
+                        type: string
+                      phone:
+                        type: string
+                      receiver:
+                        type: string
+                      method:
+                        type: string
+                        enum:
+                          - HX_STD
+                          - HX_SD
+                          - HX_ND
+                      sender:
+                        type: object
+                        properties:
+                          country:
+                            type: string
+                          district:
+                            type: string
+                          name:
+                            type: string
+                          address:
+                            type: string
+                          city:
+                            type: string
+                          neighbourhood:
+                            type: string
+                address_id:
+                  type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/200"
+  /shipment/query:
+    post:
+      summary: query-order
+      description: Test cargo config
+      operationId: f1534507-f445-4961-8638-94e15d69a347
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                language:
+                  type: string
+                service:
+                  type: string
+                  enum:
+                    - yurtici
+                    - mng
+                    - aras
+                    - ups
+                    - ptt
+                    - surat
+                    - ups-global
+                    - sendeo
+                    - hepsijet
+                mode:
+                  type: string
+                  enum:
+                    - test
+                    - live
+                config:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    password:
+                      type: string
+                    user_code:
+                      type: string
+                    access_token:
+                      type: string
+                orders:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        default:
+          description: Success response
+          content:
+          $ref: "#/components/responses/200"
+components:
+  schemas:
+    basicConfiguration:
+      type: object
+      properties:
+        language:
+          type: string
+        service:
+          type: string
+          enum:
+            - yurtici
+            - mng
+            - aras
+            - ups
+            - ptt
+            - surat
+            - ups-global
+            - sendeo
+            - hepsijet
+        mode:
+          type: string
+          enum:
+            - test
+            - live
+    config:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        company_code:
+          type: string
+        access_token:
+          type: string
+        company_name:
+          type: string
+        warehouse_id:
+          type: string
+  securitySchemes: {}
+  parameters: {}
+  requestBodies:
+    ConfigBody:
+      description: ConfigBody
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/config"
+  responses: 
+    "200":
+      description: Success response
+      content:
+        application/json:
+          schema:
+            properties:
+              meta:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+              data:
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    items:
+                      properties:
+                        identity:
+                          type: string
+                        status:
+                          type: string
+                        message:
+                          type: string
+                        error_code:
+                          type: string
+                        tracking_code:
+                          type: string
+                        tracking_url:
+                          type: string
+                        deci:
+                          type: string
+                        parcel:
+                          type: string
+                        label:
+                          type: string
+                        receipt:
+                          type: string
+
+  headers: {}
+  links: {}
+  callbacks: {}

@@ -85,7 +85,7 @@ class Order implements OrderInterface
         ?float $cargoPrice,
         ?float $duty,
         WareHouse $wareHouse,
-        ?string $addressId,
+        string $addressId
     ) {
         $this->setIdentity($identity);
         $this->setReceiver($receiver);

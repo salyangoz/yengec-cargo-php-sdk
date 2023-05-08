@@ -11,11 +11,11 @@ class Order implements OrderInterface
     /**
      * @var string
      */
-    protected string $identity;
+    protected ?string $identity;
     /**
-     * @var string
+     * @var ?string
      */
-    protected string $status;
+    protected ?string $status;
     /**
      * @var string
      */
@@ -40,6 +40,7 @@ class Order implements OrderInterface
 
     protected ?string $receipt;
 
+    protected ?string $addressId;
     /**
      * Order constructor.
      * @param string $identity
@@ -52,8 +53,8 @@ class Order implements OrderInterface
      * @param string|null $receipt
      */
     public function __construct(
-        string $identity,
-        string $status,
+        ?string $identity,
+        ?string $status,
         ?string $message,
         ?string $errorCode,
         ?string $trackingCode,
@@ -82,7 +83,7 @@ class Order implements OrderInterface
     /**
      * @param string $identity
      */
-    public function setIdentity(string $identity): void
+    public function setIdentity(?string $identity): void
     {
         $this->identity = $identity;
     }
@@ -98,7 +99,7 @@ class Order implements OrderInterface
     /**
      * @param string $status
      */
-    public function setStatus(string $status): void
+    public function setStatus(?string $status): void
     {
         $this->status = $status;
     }
