@@ -24,7 +24,11 @@ interface ConfigInterface
 
     public function getSurat(): array;
 
-    public function setPtt(string $username, string $password, string $paymentAccountId): void;
+    public function setPtt(
+        string $username,
+        string $password,
+        ?string $paymentAccountId = null
+    ): void;
 
     public function getPtt(): array;
 
