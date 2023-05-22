@@ -24,7 +24,7 @@ interface ConfigInterface
 
     public function getSurat(): array;
 
-    public function setPtt(string $username, string $password): void;
+    public function setPtt(string $username, string $password, string $paymentAccountId): void;
 
     public function getPtt(): array;
 
@@ -39,4 +39,11 @@ interface ConfigInterface
     ): void;
 
     public function getHepsijet(): array;
+
+    public function setHepsilojistik(
+        string $username,
+        string $password
+    ): void;
+
+    public function getHepsilojistik(): array;
 }

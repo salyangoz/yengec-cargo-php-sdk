@@ -133,12 +133,14 @@ class Config implements ConfigInterface
     /**
      * @param string $username
      * @param string $password
+     * @param string $paymentAccountId
      */
-    public function setPtt(string $username, string $password): void
+    public function setPtt(string $username, string $password, string $paymentAccountId): void
     {
         $this->configs[self::SERVICE_PTT] = [
             'username' => $username,
             'password' => $password,
+            'payment_account_id' => $paymentAccountId
         ];
     }
 
