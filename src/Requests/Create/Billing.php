@@ -12,6 +12,8 @@ class Billing implements BillingInterface
     protected ?string $district;
     protected ?string $city;
     protected ?string $country;
+    protected ?string $countryCode;
+    protected ?string $taxNumber;
 
     public function __construct(
         string $name,
@@ -20,7 +22,9 @@ class Billing implements BillingInterface
         ?string $postCode,
         ?string $district,
         ?string $city,
-        ?string $country
+        ?string $country,
+        ?string $countryCode = null,
+        ?string $taxNumber = null
     ) {
         $this->name     = $name;
         $this->phone    = $phone;
@@ -29,6 +33,8 @@ class Billing implements BillingInterface
         $this->district = $district;
         $this->city     = $city;
         $this->country  = $country;
+        $this->countryCode = $countryCode;
+        $this->taxNumber = $taxNumber;
     }
 
     /**
@@ -173,5 +179,37 @@ class Billing implements BillingInterface
             'district' => $this->getDistrict(),
             'post_code' => $this->getPostCode(),
         ];
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCountryCode(): ?string
+    {
+        return $this->countryCode;
+    }
+
+    /**
+     * @param string|null $countryCode
+     */
+    public function setCountryCode(?string $countryCode): void
+    {
+        $this->countryCode = $countryCode;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTaxNumber(): ?string
+    {
+        return $this->taxNumber;
+    }
+
+    /**
+     * @param string|null $taxNumber
+     */
+    public function setTaxNumber(?string $taxNumber): void
+    {
+        $this->taxNumber = $taxNumber;
     }
 }

@@ -26,6 +26,7 @@ class Config implements ConfigInterface
     public const SERVICE_AMAZON_EASY_SHIP = 'amazon-easy-ship';
     public const SERVICE_SENDEO = 'sendeo';
     public const SERVICE_HEPSIJET = 'hepsijet';
+    public const SERVICE_HEPSILOJISTIK = 'hepsilojistik';
 
     /**
      * @param string $username
@@ -303,5 +304,27 @@ class Config implements ConfigInterface
         }
 
         return $this->configs[self::SERVICE_HEPSIJET];
+    }
+
+    public function setHepsilojistik(
+        string $username,
+        string $password,
+    ): void {
+        $this->configs[self::SERVICE_HEPSILOJISTIK] = [
+            'username' => $username,
+            'password' => $password,
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getHepsilojistik(): array
+    {
+        if (!isset($this->configs[self::SERVICE_HEPSILOJISTIK])) {
+            return [];
+        }
+
+        return $this->configs[self::SERVICE_HEPSILOJISTIK];
     }
 }
