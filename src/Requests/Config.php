@@ -313,7 +313,7 @@ class Config implements ConfigInterface
 
     public function setHepsilojistik(
         string $username,
-        string $password,
+        string $password
     ): void {
         $this->configs[self::SERVICE_HEPSILOJISTIK] = [
             'username' => $username,
