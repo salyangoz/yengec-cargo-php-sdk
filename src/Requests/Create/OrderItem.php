@@ -9,11 +9,8 @@ class OrderItem implements OrderItemInterface
     private ?float $unitPrice;
     private ?string $hsCode;
     private ?float $weight;
-<<<<<<< HEAD
     private ?float $discount;
-=======
     private ?string $stockCode;
->>>>>>> a7fadb83ebb23f21ada7566b4a73742c3e4004ee
 
     /**
      * OrderSender constructor.
@@ -23,6 +20,7 @@ class OrderItem implements OrderItemInterface
      * @param string|null $hsCode
      * @param float|null $weight
      * @param float|null $discount
+     * @param string|null $stockCode
      */
     public function __construct(
         string $productName,
@@ -30,11 +28,8 @@ class OrderItem implements OrderItemInterface
         ?float $unitPrice,
         ?string $hsCode,
         ?float $weight,
-<<<<<<< HEAD
-        ?float $discount
-=======
+        ?float $discount,
         ?string $stockCode = null
->>>>>>> a7fadb83ebb23f21ada7566b4a73742c3e4004ee
     ) {
         $this->productName = $productName;
         $this->quantity = $quantity;
@@ -42,6 +37,7 @@ class OrderItem implements OrderItemInterface
         $this->hsCode = $hsCode;
         $this->weight = $weight;
         $this->stockCode = $stockCode;
+        $this->discount = $discount;
     }
 
     /**
@@ -142,19 +138,6 @@ class OrderItem implements OrderItemInterface
         $this->discount = $discount;
     }
 
-    /**
-     * @return array|string[]
-     */
-    public function toArray(): array
-    {
-        return [
-            'quantity'      => $this->getQuantity(),
-            'unit_price'    => $this->getUnitPrice(),
-            'product_name'  => $this->getProductName(),
-            'hs_code'       => $this->getHsCode(),
-            'weight'        => $this->getWeight()
-        ];
-    }
 
     /**
      * @return string|null
@@ -170,5 +153,19 @@ class OrderItem implements OrderItemInterface
     public function setStockCode(?string $stockCode): void
     {
         $this->stockCode = $stockCode;
+    }
+
+    /**
+     * @return array|string[]
+     */
+    public function toArray(): array
+    {
+        return [
+            'quantity'      => $this->getQuantity(),
+            'unit_price'    => $this->getUnitPrice(),
+            'product_name'  => $this->getProductName(),
+            'hs_code'       => $this->getHsCode(),
+            'weight'        => $this->getWeight()
+        ];
     }
 }
