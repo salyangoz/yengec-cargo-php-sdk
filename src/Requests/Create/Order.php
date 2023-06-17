@@ -31,6 +31,7 @@ class Order implements OrderInterface
     protected ?float $discount;
     protected ?Billing $billing;
     protected ?WareHouse $wareHouse;
+    protected ?string $addressId;
 
     /**
      * Order constructor.
@@ -58,6 +59,7 @@ class Order implements OrderInterface
      * @param float|null $cargoPrice
      * @param float|null $duty
      * @param WareHouse $wareHouse
+     * @param string|null $addressId
      */
     public function __construct(
         string $identity,
@@ -83,7 +85,8 @@ class Order implements OrderInterface
         Billing $billing,
         ?float $cargoPrice,
         ?float $duty,
-        WareHouse $wareHouse
+        WareHouse $wareHouse,
+        ?string $addressId = null
     ) {
         $this->setIdentity($identity);
         $this->setReceiver($receiver);
@@ -109,6 +112,7 @@ class Order implements OrderInterface
         $this->setCargoPrice($cargoPrice);
         $this->setDuty($duty);
         $this->setWareHouse($wareHouse);
+        $this->setAddressId($addressId);
     }
 
     /**
@@ -251,6 +255,7 @@ class Order implements OrderInterface
             'export_method' => $this->getExportMethod(),
             'export_reason' => $this->getExportReason(),
             'label_description' => $this->getLabelDescription(),
+            'address_id'    => $this->getAddressId(),
         ];
     }
 
@@ -434,7 +439,7 @@ class Order implements OrderInterface
      */
     public function getId(): string
     {
-         return $this->id;
+        return $this->id;
     }
 
     /**
@@ -546,6 +551,7 @@ class Order implements OrderInterface
     }
 
     /**
+<<<<<<< HEAD
      * @return float|null
      */
     public function getDiscount(): ?float
@@ -559,5 +565,20 @@ class Order implements OrderInterface
     public function setDiscount(?float $discount): void
     {
         $this->discount = $discount;
+=======
+     * @return string|null
+     */
+    public function getAddressId(): ?string
+    {
+        return $this->addressId;
+    }
+
+    /**
+     * @param string|null $addressId
+     */
+    public function setAddressId(?string $addressId): void
+    {
+        $this->addressId = $addressId;
+>>>>>>> a7fadb83ebb23f21ada7566b4a73742c3e4004ee
     }
 }

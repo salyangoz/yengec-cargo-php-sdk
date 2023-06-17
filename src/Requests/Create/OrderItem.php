@@ -9,7 +9,11 @@ class OrderItem implements OrderItemInterface
     private ?float $unitPrice;
     private ?string $hsCode;
     private ?float $weight;
+<<<<<<< HEAD
     private ?float $discount;
+=======
+    private ?string $stockCode;
+>>>>>>> a7fadb83ebb23f21ada7566b4a73742c3e4004ee
 
     /**
      * OrderSender constructor.
@@ -26,13 +30,18 @@ class OrderItem implements OrderItemInterface
         ?float $unitPrice,
         ?string $hsCode,
         ?float $weight,
+<<<<<<< HEAD
         ?float $discount
+=======
+        ?string $stockCode = null
+>>>>>>> a7fadb83ebb23f21ada7566b4a73742c3e4004ee
     ) {
         $this->productName = $productName;
         $this->quantity = $quantity;
         $this->unitPrice = $unitPrice;
         $this->hsCode = $hsCode;
         $this->weight = $weight;
+        $this->stockCode = $stockCode;
     }
 
     /**
@@ -145,5 +154,21 @@ class OrderItem implements OrderItemInterface
             'hs_code'       => $this->getHsCode(),
             'weight'        => $this->getWeight()
         ];
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getStockCode(): ?string
+    {
+        return $this->stockCode;
+    }
+
+    /**
+     * @param string|null $stockCode
+     */
+    public function setStockCode(?string $stockCode): void
+    {
+        $this->stockCode = $stockCode;
     }
 }

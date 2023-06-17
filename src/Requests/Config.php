@@ -25,6 +25,8 @@ class Config implements ConfigInterface
     public const SERVICE_UPS_GLOBAL = 'ups-global';
     public const SERVICE_AMAZON_EASY_SHIP = 'amazon-easy-ship';
     public const SERVICE_SENDEO = 'sendeo';
+    public const SERVICE_HEPSIJET = 'hepsijet';
+    public const SERVICE_HEPSILOJISTIK = 'hepsilojistik';
 
     /**
      * @param string $username
@@ -131,12 +133,17 @@ class Config implements ConfigInterface
     /**
      * @param string $username
      * @param string $password
+     * @param string $paymentAccountId
      */
-    public function setPtt(string $username, string $password): void
-    {
+    public function setPtt(
+        string $username,
+        string $password,
+        ?string $paymentAccountId = null
+    ): void {
         $this->configs[self::SERVICE_PTT] = [
             'username' => $username,
             'password' => $password,
+            'payment_account_id' => $paymentAccountId
         ];
     }
 
@@ -267,5 +274,62 @@ class Config implements ConfigInterface
         }
 
         return $this->configs[self::SERVICE_UPS_GLOBAL];
+    }
+
+    /**
+     * @param string $username
+     * @param string $password
+     * @param string $warehouseId
+     * @param string $companyName
+     * @param string $companyCode
+     */
+    public function setHepsijet(
+        string $username,
+        string $password,
+        string $warehouseId,
+        string $companyName,
+        string $companyCode
+    ): void {
+        $this->configs[self::SERVICE_HEPSIJET] = [
+            'username' => $username,
+            'password' => $password,
+            'company_code' => $companyCode,
+            'warehouse_id' => $warehouseId,
+            'company_name' => $companyName,
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getHepsijet(): array
+    {
+        if (!isset($this->configs[self::SERVICE_HEPSIJET])) {
+            return [];
+        }
+
+        return $this->configs[self::SERVICE_HEPSIJET];
+    }
+
+    public function setHepsilojistik(
+        string $username,
+        string $password
+    ): void {
+        $this->configs[self::SERVICE_HEPSILOJISTIK] = [
+            'username' => $username,
+            'password' => $password,
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getHepsilojistik(): array
+    {
+        if (!isset($this->configs[self::SERVICE_HEPSILOJISTIK])) {
+            return [];
+        }
+
+        return $this->configs[self::SERVICE_HEPSILOJISTIK];
     }
 }

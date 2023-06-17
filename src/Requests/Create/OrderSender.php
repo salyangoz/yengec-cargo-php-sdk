@@ -2,9 +2,7 @@
 
 namespace Yengec\Cargo\Requests\Create;
 
-use Illuminate\Contracts\Support\Arrayable;
-
-class OrderSender implements Arrayable
+class OrderSender implements ArrayableInterface
 {
     private string $name;
     private ?string $address;
@@ -219,7 +217,7 @@ class OrderSender implements Arrayable
     /**
      * @return array|string[]
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'name'     => $this->getName(),
