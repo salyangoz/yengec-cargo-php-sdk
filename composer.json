@@ -1,14 +1,16 @@
 {
   "name": "yengec/cargo",
   "description": "PE Cargo SDK",
-  "version": "master",
   "authors": [
     {
       "name": "İbrahim Ş. Örencik",
       "email": "o@yedincisenol.com"
     }
   ],
-  "require": {},
+  "require": {
+    "guzzlehttp/guzzle": "^7.7",
+    "nesbot/carbon": "^2.67"
+  },
   "autoload": {
     "psr-4": {
       "Yengec\\Cargo\\": "src"

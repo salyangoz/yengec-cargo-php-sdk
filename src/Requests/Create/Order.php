@@ -28,6 +28,7 @@ class Order implements OrderInterface
     protected ?string $labelDescription;
     protected ?float $cargoPrice;
     protected ?float $duty;
+    protected ?float $discount;
     protected ?Billing $billing;
     protected ?WareHouse $wareHouse;
 
@@ -233,8 +234,9 @@ class Order implements OrderInterface
             'items'     => $this->getItems()->toArray(),
             'method'    => $this->getMethod(),
             'sender'    => $this->getSender() ? $this->getSender()->toArray() : [],
-            'ship_at'   => optional($this->getShipAt())->format('Y-m-d H:i'),
+            'ship_at'   => $this->getShipAt() ? $this->getShipAt()->format('Y-m-d H:i') : null,
             'address'   => $this->getAddress(),
+            'discount'  => $this->getDiscount(),
             'billing'   => $this->getBilling() ? $this->getBilling()->toArray() : [],
             'identity'  => $this->getIdentity(),
             'receiver'  => $this->getReceiver(),
@@ -541,5 +543,21 @@ class Order implements OrderInterface
     public function getWareHouse(): ?WareHouse
     {
         return $this->wareHouse;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getDiscount(): ?float
+    {
+        return $this->discount;
+    }
+
+    /**
+     * @param float|null $discount
+     */
+    public function setDiscount(?float $discount): void
+    {
+        $this->discount = $discount;
     }
 }

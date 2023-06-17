@@ -9,6 +9,7 @@ class OrderItem implements OrderItemInterface
     private ?float $unitPrice;
     private ?string $hsCode;
     private ?float $weight;
+    private ?float $discount;
 
     /**
      * OrderSender constructor.
@@ -17,13 +18,15 @@ class OrderItem implements OrderItemInterface
      * @param float|null $unitPrice
      * @param string|null $hsCode
      * @param float|null $weight
+     * @param float|null $discount
      */
     public function __construct(
         string $productName,
         ?float $quantity,
         ?float $unitPrice,
         ?string $hsCode,
-        ?float $weight
+        ?float $weight,
+        ?float $discount
     ) {
         $this->productName = $productName;
         $this->quantity = $quantity;
@@ -111,6 +114,23 @@ class OrderItem implements OrderItemInterface
     public function setWeight(?float $weight): void
     {
         $this->weight = $weight;
+    }
+
+
+    /**
+     * @return float|int|null
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
+
+    /**
+     * @param float|int|null $discount
+     */
+    public function setDiscount($discount): void
+    {
+        $this->discount = $discount;
     }
 
     /**
