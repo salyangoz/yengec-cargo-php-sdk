@@ -73,6 +73,7 @@ class Order implements OrderInterface
         ?string $countryCode,
         ?string $currency,
         ?float $total,
+        ?float $discount,
         ?string $exportMethod,
         ?string $exportReason,
         ?string $method,
@@ -112,6 +113,7 @@ class Order implements OrderInterface
         $this->setCargoPrice($cargoPrice);
         $this->setDuty($duty);
         $this->setWareHouse($wareHouse);
+        $this->setDiscount($discount);
         $this->setAddressId($addressId);
     }
 
@@ -551,7 +553,6 @@ class Order implements OrderInterface
     }
 
     /**
-<<<<<<< HEAD
      * @return float|null
      */
     public function getDiscount(): ?float
@@ -565,7 +566,9 @@ class Order implements OrderInterface
     public function setDiscount(?float $discount): void
     {
         $this->discount = $discount;
-=======
+    }
+
+    /**
      * @return string|null
      */
     public function getAddressId(): ?string
@@ -579,6 +582,5 @@ class Order implements OrderInterface
     public function setAddressId(?string $addressId): void
     {
         $this->addressId = $addressId;
->>>>>>> a7fadb83ebb23f21ada7566b4a73742c3e4004ee
     }
 }
