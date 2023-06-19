@@ -165,7 +165,8 @@ class OrderItem implements OrderItemInterface
             'unit_price'    => $this->getUnitPrice(),
             'product_name'  => $this->getProductName(),
             'hs_code'       => $this->getHsCode(),
-            'weight'        => $this->getWeight()
+            'weight'        => $this->getWeight(),
+            'discount'      => $this->getDiscount(),
         ];
     }
 }
