@@ -108,15 +108,15 @@ class Config implements ConfigInterface
      * @param string $username
      * @param string $password
      * @param string $userCode
-     * @param string $addressId
+     * @param string $branchId
      */
-    public function setAras(string $username, string $password, string $userCode, string $addressId = null): void
+    public function setAras(string $username, string $password, string $userCode, string $branchId = null): void
     {
         $this->configs[self::SERVICE_ARAS] = [
             'username' => $username,
             'password' => $password,
             'user_code' => $userCode,
-            'address_id' => $addressId
+            'branch_id' => $branchId
         ];
     }
 
