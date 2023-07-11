@@ -16,7 +16,7 @@ interface ConfigInterface
 
     public function getUps(): array;
 
-    public function setAras(string $username, string $password, string $userCode): void;
+    public function setAras(string $username, string $password, string $userCode, string $addressId): void;
 
     public function getAras(): array;
 
