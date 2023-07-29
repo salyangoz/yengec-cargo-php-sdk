@@ -12,6 +12,7 @@ class Order implements OrderInterface
     protected string $identity;
     protected string $receiver;
     protected ?string $district;
+    protected ?string $neighborhood;
     protected ?string $email;
     protected ?string $postalCode;
     protected ?OrderSender $sender;
@@ -46,6 +47,7 @@ class Order implements OrderInterface
      * @param string|null $countryCode
      * @param string|null $currency
      * @param float|null $total
+     * @param float|null $discount
      * @param string|null $exportMethod
      * @param string|null $exportReason
      * @param string|null $method
@@ -68,6 +70,7 @@ class Order implements OrderInterface
         ?string $phone,
         string $city,
         ?string $district,
+        ?string $neighborhood,
         ?string $email,
         ?Carbon $shipAt,
         ?string $countryCode,
@@ -115,6 +118,7 @@ class Order implements OrderInterface
         $this->setWareHouse($wareHouse);
         $this->setDiscount($discount);
         $this->setAddressId($addressId);
+        $this->setNeighborhood($neighborhood);
     }
 
     /**
@@ -254,6 +258,7 @@ class Order implements OrderInterface
             'cargo_price'   => $this->getCargoPrice(),
             'country_code'  => $this->getCountryCode(),
             'invoice_code'  => $this->getInvoiceCode(),
+            'neighbourhood' => $this->getNeighborhood(),
             'export_method' => $this->getExportMethod(),
             'export_reason' => $this->getExportReason(),
             'label_description' => $this->getLabelDescription(),
@@ -462,7 +467,7 @@ class Order implements OrderInterface
     }
 
     /**
-     * @param string $invoiceCode
+     * @param string|null $invoiceCode
      * @return void
      */
     public function setInvoiceCode(?string $invoiceCode): void
@@ -582,5 +587,21 @@ class Order implements OrderInterface
     public function setAddressId(?string $addressId): void
     {
         $this->addressId = $addressId;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getNeighborhood(): ?string
+    {
+        return $this->neighborhood;
+    }
+
+    /**
+     * @param string|null $neighborhood
+     */
+    public function setNeighborhood(?string $neighborhood): void
+    {
+        $this->neighborhood = $neighborhood;
     }
 }
