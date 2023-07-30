@@ -256,6 +256,7 @@ class Order implements OrderInterface
             'warehouse' => $this->getWareHouse() ? $this->getWareHouse()->toArray() : [],
             'postal_code'   => $this->getPostalCode(),
             'cargo_price'   => $this->getCargoPrice(),
+            'neighborhood' => $this->getNeighborhood(),
             'country_code'  => $this->getCountryCode(),
             'invoice_code'  => $this->getInvoiceCode(),
             'neighbourhood' => $this->getNeighborhood(),
