@@ -12,7 +12,8 @@ $cargoService->setHepsijet(
     'admin123',
     'YNGC_IZM',
     '1',
-    'Yengeç'
+    'Yengeç',
+    'testaddress'
 );
 
 $requestConfig = new RequestConfig(

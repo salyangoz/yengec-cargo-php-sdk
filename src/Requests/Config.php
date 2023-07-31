@@ -288,7 +288,8 @@ class Config implements ConfigInterface
         string $password,
         string $warehouseId,
         string $companyName,
-        string $companyCode
+        string $companyCode,
+        string $companyAddressId
     ): void {
         $this->configs[self::SERVICE_HEPSIJET] = [
             'username' => $username,
@@ -296,6 +297,7 @@ class Config implements ConfigInterface
             'company_code' => $companyCode,
             'warehouse_id' => $warehouseId,
             'company_name' => $companyName,
+            'company_address_id' => $companyAddressId,
         ];
     }
 
