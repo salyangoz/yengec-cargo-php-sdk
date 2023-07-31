@@ -59,7 +59,8 @@ $cargoService->setHepsijet(
     password: '******',
     userCode: '******',
     warehouseId: '***',
-    companyName: '*****'
+    companyName: '*****',
+    companyAddressId: '****'
 );
 
 // here we specify in which environment the cargo service will run and the service itself.
@@ -185,7 +186,8 @@ $cargoService->setHepsijet(
     password: '******',
     userCode: '******',
     warehouseId: '***',
-    companyName: '*****'
+    companyName: '*****',
+    companyAddressId: '****'
 );
 
 $requestConfig = new RequestConfig(

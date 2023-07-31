@@ -39,7 +39,8 @@ interface ConfigInterface
         string $password,
         string $userCode,
         string $warehouseId,
-        string $companyName
+        string $companyName,
+        string $companyAddressId
     ): void;
 
     public function getHepsijet(): array;

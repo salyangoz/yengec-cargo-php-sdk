@@ -22,6 +22,7 @@ $cargoService->setHepsijet(
     '1',
     'Yengeç',
     'YNGC_IZM',
+    'testaddress'
 );
 
 // burada da kargo servisinin hangi ortamda çalışacağını ve servisin kendisini de belirtiyoruz.
