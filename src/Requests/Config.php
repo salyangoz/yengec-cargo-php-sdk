@@ -135,7 +135,7 @@ class Config implements ConfigInterface
     /**
      * @param string $username
      * @param string $password
-     * @param string $paymentAccountId
+     * @param string|null $paymentAccountId
      */
     public function setPtt(
         string $username,

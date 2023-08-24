@@ -23,6 +23,9 @@ class Order implements OrderInterface
     protected ?string $exportMethod;
     protected ?string $exportReason;
     protected ?string $method;
+
+    protected bool $payOnDelivery;
+    protected ?string $payOnDeliveryMethod;
     protected ?OrderItemCollection $orderItems;
     protected string $id;
     protected ?string $invoiceCode;
@@ -90,7 +93,9 @@ class Order implements OrderInterface
         ?float $cargoPrice,
         ?float $duty,
         WareHouse $wareHouse,
-        ?string $addressId = null
+        ?string $addressId = null,
+        bool $payOnDelivery = false,
+        ?string $payOnDeliveryMethod = null
     ) {
         $this->setIdentity($identity);
         $this->setReceiver($receiver);
@@ -119,6 +124,8 @@ class Order implements OrderInterface
         $this->setDiscount($discount);
         $this->setAddressId($addressId);
         $this->setNeighborhood($neighborhood);
+        $this->setPayOnDelivery($payOnDelivery);
+        $this->setPayOnDeliveryMethod($payOnDeliveryMethod);
     }
 
     /**
@@ -254,6 +261,7 @@ class Order implements OrderInterface
             'currency'  => $this->getCurrency(),
             'order_id'  => $this->getId(),
             'warehouse' => $this->getWareHouse() ? $this->getWareHouse()->toArray() : [],
+            'address_id'    => $this->getAddressId(),
             'postal_code'   => $this->getPostalCode(),
             'cargo_price'   => $this->getCargoPrice(),
             'neighborhood' => $this->getNeighborhood(),
@@ -262,8 +270,9 @@ class Order implements OrderInterface
             'neighbourhood' => $this->getNeighborhood(),
             'export_method' => $this->getExportMethod(),
             'export_reason' => $this->getExportReason(),
+            'pay_on_delivery' => $this->isPayOnDelivery(),
             'label_description' => $this->getLabelDescription(),
-            'address_id'    => $this->getAddressId(),
+            'pay_on_delivery_method' => $this->getPayOnDeliveryMethod(),
         ];
     }
 
@@ -604,5 +613,26 @@ class Order implements OrderInterface
     public function setNeighborhood(?string $neighborhood): void
     {
         $this->neighborhood = $neighborhood;
+    }
+
+
+    public function isPayOnDelivery(): bool
+    {
+        return $this->payOnDelivery;
+    }
+
+    public function setPayOnDelivery(bool $payOnDelivery): void
+    {
+        $this->payOnDelivery = $payOnDelivery;
+    }
+
+    public function getPayOnDeliveryMethod(): ?string
+    {
+        return $this->payOnDeliveryMethod;
+    }
+
+    public function setPayOnDeliveryMethod(?string $payOnDeliveryMethod): void
+    {
+        $this->payOnDeliveryMethod = $payOnDeliveryMethod;
     }
 }
