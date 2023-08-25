@@ -22,7 +22,8 @@ abstract class Request implements RequestInterface
         $this->setService($requestConfig->getService());
         $this->setConfig($requestConfig->getConfig());
         $this->httpClient = new Client([
-            'base_uri' => $requestConfig->getMode() == 'live' ? self::BASE_URI : self::TEST_BASE_URI
+            'base_uri' => $requestConfig->getMode() == 'live' ? self::BASE_URI : self::TEST_BASE_URI,
+            'timeout' => 60
         ]);
     }
 
