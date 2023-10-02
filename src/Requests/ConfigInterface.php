@@ -45,10 +45,7 @@ interface ConfigInterface
 
     public function getHepsijet(): array;
 
-    public function setHepsilojistik(
-        string $username,
-        string $password
-    ): void;
+    public function setFedex(string $username, string $password, string $userCode): void;
 
-    public function getHepsilojistik(): array;
+    public function getFedex(): array;
 }
