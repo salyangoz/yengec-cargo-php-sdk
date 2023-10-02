@@ -27,6 +27,7 @@ class Config implements ConfigInterface
     public const SERVICE_SENDEO = 'sendeo';
     public const SERVICE_HEPSIJET = 'hepsijet';
     public const SERVICE_HEPSILOJISTIK = 'hepsilojistik';
+    public const SERVICE_FEDEX = 'fedex';
 
     /**
      * @param string $username
@@ -315,25 +316,29 @@ class Config implements ConfigInterface
         return $this->configs[self::SERVICE_HEPSIJET];
     }
 
-    public function setHepsilojistik(
-        string $username,
-        string $password
-    ): void {
-        $this->configs[self::SERVICE_HEPSILOJISTIK] = [
+    /**
+     * @param string $username
+     * @param string $password
+     * @param string $userCode
+     */
+    public function setFedex(string $username, string $password, string $userCode): void
+    {
+        $this->configs[self::SERVICE_FEDEX] = [
             'username' => $username,
             'password' => $password,
+            'user_code' => $userCode
         ];
     }
 
     /**
      * @return array
      */
-    public function getHepsilojistik(): array
+    public function getFedex(): array
     {
-        if (!isset($this->configs[self::SERVICE_HEPSILOJISTIK])) {
+        if (!isset($this->configs[self::SERVICE_FEDEX])) {
             return [];
         }
 
-        return $this->configs[self::SERVICE_HEPSILOJISTIK];
+        return $this->configs[self::SERVICE_FEDEX];
     }
 }
