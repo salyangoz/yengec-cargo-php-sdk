@@ -181,7 +181,7 @@ class Billing implements BillingInterface
             'city' => $this->getCity(),
             'district' => $this->getDistrict(),
             'neighborhood' => $this->getNeighborhood(),
-            'post_code' => $this->getPostCode(),
+            'postal_code' => $this->getPostCode(),
         ];
     }
 

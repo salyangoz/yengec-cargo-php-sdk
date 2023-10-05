@@ -14,6 +14,7 @@ class OrderSender implements ArrayableInterface
     private ?string $voec;
     private ?string $pva;
     private ?string $ioss;
+    private ?string $postalCode;
 
     /**
      * OrderSender constructor.
@@ -38,7 +39,8 @@ class OrderSender implements ArrayableInterface
         ?string $phone,
         ?string $voec,
         ?string $pva,
-        ?string $ioss
+        ?string $ioss,
+        ?string $postalCode
     ) {
         $this->name = $name;
         $this->address = $address;
@@ -50,6 +52,7 @@ class OrderSender implements ArrayableInterface
         $this->voec = $voec;
         $this->pva = $pva;
         $this->ioss = $ioss;
+        $this->postalCode = $postalCode;
     }
 
     /**
@@ -229,7 +232,18 @@ class OrderSender implements ArrayableInterface
             'country_code' => $this->getCountryCode(),
             'ioss' => $this->getIoss(),
             'voec' => $this->getVoec(),
-            'pva' => $this->getPva()
+            'pva' => $this->getPva(),
+            'postal_code' => $this->getPostalCode()
         ];
+    }
+
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(?string $postalCode): void
+    {
+        $this->postalCode = $postalCode;
     }
 }
