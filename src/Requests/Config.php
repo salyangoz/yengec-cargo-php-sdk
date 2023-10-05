@@ -257,10 +257,11 @@ class Config implements ConfigInterface
      * @param string $accessToken
      * @param string $userCode
      */
-    public function setUpsGlobal(string $accessToken): void
+    public function setUpsGlobal(string $accessToken, string $userCode): void
     {
         $this->configs[self::SERVICE_UPS_GLOBAL] = [
             'access_token' => $accessToken,
+            'user_code' => $userCode
         ];
     }
 
