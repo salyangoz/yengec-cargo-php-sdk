@@ -9,20 +9,22 @@ class WareHouse
     protected ?string $district;
     protected ?string $address;
     protected ?string $phone;
-
+    protected ?string $countryCode;
 
     public function __construct(
         ?string $country,
         ?string $city,
         ?string $district,
         ?string $address,
-        ?string $phone
+        ?string $phone,
+        ?string $countryCode
     ) {
         $this->country = $country;
         $this->city = $city;
         $this->district = $district;
         $this->address = $address;
         $this->phone = $phone;
+        $this->countryCode = $countryCode;
     }
 
     /**
@@ -116,6 +118,17 @@ class WareHouse
             'country' => $this->getCountry(),
             'city' => $this->getCity(),
             'district' => $this->getDistrict(),
+            'country_code' => $this->getCountryCode()
         ];
+    }
+
+    public function getCountryCode(): ?string
+    {
+        return $this->countryCode;
+    }
+
+    public function setCountryCode(?string $countryCode): void
+    {
+        $this->countryCode = $countryCode;
     }
 }
