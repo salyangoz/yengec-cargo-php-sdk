@@ -10,6 +10,7 @@ class WareHouse
     protected ?string $address;
     protected ?string $phone;
     protected ?string $countryCode;
+    protected ?string $postalCode;
 
     public function __construct(
         ?string $country,
@@ -17,7 +18,8 @@ class WareHouse
         ?string $district,
         ?string $address,
         ?string $phone,
-        ?string $countryCode
+        ?string $countryCode,
+        ?string $postalCode
     ) {
         $this->country = $country;
         $this->city = $city;
@@ -25,6 +27,7 @@ class WareHouse
         $this->address = $address;
         $this->phone = $phone;
         $this->countryCode = $countryCode;
+        $this->postalCode = $postalCode;
     }
 
     /**
@@ -118,7 +121,8 @@ class WareHouse
             'country' => $this->getCountry(),
             'city' => $this->getCity(),
             'district' => $this->getDistrict(),
-            'country_code' => $this->getCountryCode()
+            'country_code' => $this->getCountryCode(),
+            'postal_code' => $this->getPostalCode()
         ];
     }
 
@@ -130,5 +134,15 @@ class WareHouse
     public function setCountryCode(?string $countryCode): void
     {
         $this->countryCode = $countryCode;
+    }
+
+    public function getPostalCode(): ?string
+    {
+        return $this->postalCode;
+    }
+
+    public function setPostalCode(?string $postalCode): void
+    {
+        $this->postalCode = $postalCode;
     }
 }
