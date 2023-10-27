@@ -3,6 +3,9 @@
 namespace Yengec\Cargo;
 
 use Closure;
+use Yengec\Cargo\Requests\Create\OrderInterface;
+use Yengec\Cargo\Requests\CreateOneRequest;
+use Yengec\Cargo\Responses\CreateOneResponse;
 use Yengec\Cargo\Responses\Response;
 use Yengec\Cargo\Requests\TestRequest;
 use Yengec\Cargo\Requests\QueryRequest;
@@ -58,6 +61,27 @@ class Client
         $request->setOrders($orders);
         return self::withHandler(function () use ($request) {
             return new CreateResponse($request->send());
+        });
+    }
+
+    /**
+     * @param RequestConfigInterface $requestConfig
+     * @param OrderInterface $order
+     * @return CreateOneResponse
+     * @throws BadRequestException
+     * @throws InvalidAddressException
+     * @throws InvalidRequestException
+     * @throws InvalidResponseException
+     * @throws ServiceConfigException
+     */
+    public static function createOne(
+        RequestConfigInterface $requestConfig,
+        OrderInterface $order
+    ): CreateOneResponse {
+        $request = new CreateOneRequest($requestConfig);
+        $request->setOrder($order);
+        return self::withHandler(function () use ($request) {
+            return new CreateOneResponse($request->send());
         });
     }
 
