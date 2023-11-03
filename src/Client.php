@@ -5,7 +5,9 @@ namespace Yengec\Cargo;
 use Closure;
 use Yengec\Cargo\Requests\Create\OrderInterface;
 use Yengec\Cargo\Requests\CreateOneRequest;
+use Yengec\Cargo\Requests\QueryOneRequest;
 use Yengec\Cargo\Responses\CreateOneResponse;
+use Yengec\Cargo\Responses\QueryOneResponse;
 use Yengec\Cargo\Responses\Response;
 use Yengec\Cargo\Requests\TestRequest;
 use Yengec\Cargo\Requests\QueryRequest;
@@ -103,6 +105,18 @@ class Client
 
         return self::withHandler(function () use ($request) {
             return new QueryResponse($request->send());
+        });
+    }
+
+    public static function queryOne(
+        RequestConfigInterface $requestConfig,
+        string $code
+    ): QueryOneResponse {
+        $request = new QueryOneRequest($requestConfig);
+        $request->setCode($code);
+
+        return self::withHandler(function () use ($request) {
+            return new QueryOneResponse($request->send());
         });
     }
 

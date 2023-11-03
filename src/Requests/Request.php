@@ -29,7 +29,7 @@ abstract class Request implements RequestInterface
 
     public function send()
     {
-        return $this->httpClient->post(static::PATH, [
+        return $this->httpClient->post($this->getPath(), [
             'json' => $this->toArray()
         ]);
     }
@@ -96,6 +96,11 @@ abstract class Request implements RequestInterface
     public function setConfig(ConfigInterface $config): void
     {
         $this->config = $config;
+    }
+
+    public function getPath()
+    {
+        return static::PATH;
     }
 
     /**

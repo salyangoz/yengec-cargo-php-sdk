@@ -2,28 +2,26 @@
 
 namespace Yengec\Cargo\Responses;
 
-use Psr\Http\Message\ResponseInterface;
 use Yengec\Cargo\Responses\Order\Order;
-use Yengec\Cargo\Exceptions\InvalidResponseException;
 use Yengec\Cargo\Responses\Order\OrderInterface;
 
 /**
- * Class CreateResponse
+ * Class QueryResponse
  * @package Yengec\Cargo\Responses
  */
-class CreateOneResponse extends Response
+class QueryOneResponse extends Response
 {
     /**
      * @var OrderInterface
      */
-    public OrderInterface $order;
+    protected OrderInterface $order;
 
     /**
-     * CreateResponse constructor.
-     * @param ResponseInterface $response
-     * @throws InvalidResponseException
+     * QueryResponse constructor.
+     * @param \Psr\Http\Message\ResponseInterface $response
+     * @throws \Yengec\Cargo\Exceptions\InvalidResponseException
      */
-    public function __construct(ResponseInterface $response)
+    public function __construct(\Psr\Http\Message\ResponseInterface $response)
     {
         parent::__construct($response);
         $order = $this->getBody();
@@ -32,18 +30,18 @@ class CreateOneResponse extends Response
             $order['identity'],
             $order['status'],
             $order['message'],
-            $order['error_code'] ?? null,
+            $order['error_code'],
             $order['tracking_code'],
             $order['tracking_url'],
-            $order['label'],
-            $order['receipt']
+            $order['deci'],
+            $order['package_count']
         ));
     }
 
     /**
      * @return OrderInterface
      */
-    public function getOrder(): OrderInterface
+    public function getOrder()
     {
         return $this->order;
     }

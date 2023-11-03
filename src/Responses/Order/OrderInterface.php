@@ -35,7 +35,7 @@ interface OrderInterface
     public function getMessage(): ?string;
 
     /**
-     * @param string $message
+     * @param string|null $message
      */
     public function setMessage(?string $message): void;
 

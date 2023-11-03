@@ -9,7 +9,7 @@ namespace Yengec\Cargo\Responses\Order;
 class Order implements OrderInterface
 {
     /**
-     * @var string
+     * @var string|null
      */
     protected ?string $identity;
     /**
@@ -17,7 +17,7 @@ class Order implements OrderInterface
      */
     protected ?string $status;
     /**
-     * @var string
+     * @var string|null
      */
     protected ?string $message;
 
@@ -41,10 +41,11 @@ class Order implements OrderInterface
     protected ?string $receipt;
 
     protected ?string $addressId;
+
     /**
      * Order constructor.
-     * @param string $identity
-     * @param string $status
+     * @param string|null $identity
+     * @param string|null $status
      * @param string|null $message
      * @param string|null $errorCode
      * @param string|null $trackingCode
@@ -81,7 +82,7 @@ class Order implements OrderInterface
     }
 
     /**
-     * @param string $identity
+     * @param string|null $identity
      */
     public function setIdentity(?string $identity): void
     {
@@ -89,7 +90,7 @@ class Order implements OrderInterface
     }
 
     /**
-     * @return bool
+     * @return string
      */
     public function getStatus(): string
     {
@@ -97,7 +98,7 @@ class Order implements OrderInterface
     }
 
     /**
-     * @param string $status
+     * @param string|null $status
      */
     public function setStatus(?string $status): void
     {
