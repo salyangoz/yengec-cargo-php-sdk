@@ -31,9 +31,9 @@ $queryOrders = new OrderCollection();
 
 $queryOrders->add($id);
 
-$query = $client->query(
+$query = $client->queryOne(
     $requestConfig,
-    $queryOrders
+    $id
 );
 
 

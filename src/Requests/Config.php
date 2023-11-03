@@ -26,7 +26,6 @@ class Config implements ConfigInterface
     public const SERVICE_AMAZON_EASY_SHIP = 'amazon-easy-ship';
     public const SERVICE_SENDEO = 'sendeo';
     public const SERVICE_HEPSIJET = 'hepsijet';
-    public const SERVICE_HEPSILOJISTIK = 'hepsilojistik';
     public const SERVICE_FEDEX = 'fedex';
 
     /**

@@ -34,7 +34,7 @@ You must start using the relevant method of the cargo service you want to use.
     - EasyShip
     - UpsGlobal
     - Hepsijet
-    - Hepsilojistik
+    - Fedex
 
 > Note, each method should start with set. For example, `setHepsijet` etc.
 </details>
