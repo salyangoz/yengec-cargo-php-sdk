@@ -44,6 +44,6 @@ class QueryOneRequest extends Request
 
     public function getPath(): string
     {
-        return static::PATH . $this->getCode() . '/cancel';
+        return static::PATH . $this->getCode();
     }
 }
