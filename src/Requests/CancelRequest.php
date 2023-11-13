@@ -6,7 +6,7 @@ namespace Yengec\Cargo\Requests;
  * Class QueryRequest
  * @package Yengec\Cargo\Requests
  */
-class QueryOneRequest extends Request
+class CancelRequest extends Request
 {
     /**
      * Endpoint

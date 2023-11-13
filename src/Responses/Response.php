@@ -51,6 +51,7 @@ class Response implements \Yengec\Cargo\Responses\ResponseInterface
      */
     public static function toArray(ResponseInterface $response): array
     {
+        print_r($response->getBody()->getContents());
         return json_decode((string) $response->getBody(), true);
     }
 
