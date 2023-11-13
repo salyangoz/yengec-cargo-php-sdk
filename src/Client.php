@@ -3,6 +3,7 @@
 namespace Yengec\Cargo;
 
 use Closure;
+use Yengec\Cargo\Requests\CancelRequest;
 use Yengec\Cargo\Requests\Create\OrderInterface;
 use Yengec\Cargo\Requests\CreateOneRequest;
 use Yengec\Cargo\Requests\QueryOneRequest;
@@ -117,6 +118,18 @@ class Client
 
         return self::withHandler(function () use ($request) {
             return new QueryOneResponse($request->send());
+        });
+    }
+
+    public static function cancel(
+        RequestConfigInterface $requestConfig,
+        string $code
+    ): void {
+        $request = new CancelRequest($requestConfig);
+        $request->setCode($code);
+
+        self::withHandler(function () use ($request) {
+            $request->send();
         });
     }
 
