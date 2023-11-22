@@ -3,6 +3,7 @@
 namespace Yengec\Cargo;
 
 use Closure;
+use Yengec\Cargo\Exceptions\ServiceException;
 use Yengec\Cargo\Requests\CancelRequest;
 use Yengec\Cargo\Requests\Create\OrderInterface;
 use Yengec\Cargo\Requests\CreateOneRequest;
@@ -154,6 +155,8 @@ class Client
                     throw new ServiceConfigException($response->getMessage());
                 case 'INVALID_ADDRESS':
                     throw new InvalidAddressException($response->getMessage());
+                case 'SERVICE_EXCEPTION':
+                    throw new ServiceException($response->getMessage());
                 default:
                     throw new InvalidRequestException($response->getMessage());
             }
