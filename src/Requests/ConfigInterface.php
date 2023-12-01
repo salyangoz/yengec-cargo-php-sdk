@@ -45,7 +45,13 @@ interface ConfigInterface
 
     public function getHepsijet(): array;
 
-    public function setFedex(string $username, string $password, string $userCode): void;
+    public function setFedex(
+        string $trackUsername,
+        string $trackPassword,
+        string $createUsername,
+        string $createPassword,
+        string $userCode
+    ): void;
 
     public function getFedex(): array;
 }

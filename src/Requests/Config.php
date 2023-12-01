@@ -314,16 +314,27 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @param string $username
-     * @param string $password
+     * @param string $trackUsername
+     * @param string $trackPassword
+     * @param string $createUsername
+     * @param string $createPassword
      * @param string $userCode
+     * @return void
      */
-    public function setFedex(string $username, string $password, string $userCode): void
+    public function setFedex(
+        string $trackUsername,
+        string $trackPassword,
+        string $createUsername,
+        string $createPassword,
+        string $userCode
+    ): void
     {
         $this->configs[self::SERVICE_FEDEX] = [
-            'username' => $username,
-            'password' => $password,
-            'user_code' => $userCode
+            'username' => $trackUsername,
+            'password' => $trackPassword,
+            'user_code' => $userCode,
+            'create_username' => $createUsername,
+            'create_password' => $createPassword
         ];
     }
 
