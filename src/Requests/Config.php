@@ -316,17 +316,17 @@ class Config implements ConfigInterface
     /**
      * @param string $trackUsername
      * @param string $trackPassword
-     * @param string $userCode
      * @param string $createUsername
      * @param string $createPassword
+     * @param string $userCode
      * @return void
      */
     public function setFedex(
         string $trackUsername,
         string $trackPassword,
-        string $userCode,
         string $createUsername,
-        string $createPassword
+        string $createPassword,
+        string $userCode
     ): void
     {
         $this->configs[self::SERVICE_FEDEX] = [

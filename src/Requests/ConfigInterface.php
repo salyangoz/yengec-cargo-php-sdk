@@ -48,9 +48,9 @@ interface ConfigInterface
     public function setFedex(
         string $trackUsername,
         string $trackPassword,
-        string $userCode,
         string $createUsername,
-        string $createPassword
+        string $createPassword,
+        string $userCode
     ): void;
 
     public function getFedex(): array;
