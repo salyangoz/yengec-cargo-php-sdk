@@ -37,6 +37,8 @@ class Order implements OrderInterface
     protected ?WareHouse $wareHouse;
     protected ?string $addressId;
 
+    protected ?string $packagingMethod;
+
     /**
      * Order constructor.
      * @param string $identity
@@ -45,6 +47,7 @@ class Order implements OrderInterface
      * @param string|null $phone
      * @param string $city
      * @param string|null $district
+     * @param string|null $neighborhood
      * @param string|null $email
      * @param Carbon|null $shipAt
      * @param string|null $countryCode
@@ -65,6 +68,9 @@ class Order implements OrderInterface
      * @param float|null $duty
      * @param WareHouse $wareHouse
      * @param string|null $addressId
+     * @param bool $payOnDelivery
+     * @param string|null $payOnDeliveryMethod
+     * @param string|null $packagingMethod
      */
     public function __construct(
         string $identity,
@@ -95,7 +101,8 @@ class Order implements OrderInterface
         WareHouse $wareHouse,
         ?string $addressId = null,
         bool $payOnDelivery = false,
-        ?string $payOnDeliveryMethod = null
+        ?string $payOnDeliveryMethod = null,
+        ?string $packagingMethod = null
     ) {
         $this->setIdentity($identity);
         $this->setReceiver($receiver);
@@ -126,6 +133,7 @@ class Order implements OrderInterface
         $this->setNeighborhood($neighborhood);
         $this->setPayOnDelivery($payOnDelivery);
         $this->setPayOnDeliveryMethod($payOnDeliveryMethod);
+        $this->setPackagingMethod($packagingMethod);
     }
 
     /**
@@ -271,6 +279,7 @@ class Order implements OrderInterface
             'export_method' => $this->getExportMethod(),
             'export_reason' => $this->getExportReason(),
             'pay_on_delivery' => $this->isPayOnDelivery(),
+            'packaging_method' => $this->getPackagingMethod(),
             'label_description' => $this->getLabelDescription(),
             'pay_on_delivery_method' => $this->getPayOnDeliveryMethod(),
         ];
@@ -634,5 +643,15 @@ class Order implements OrderInterface
     public function setPayOnDeliveryMethod(?string $payOnDeliveryMethod): void
     {
         $this->payOnDeliveryMethod = $payOnDeliveryMethod;
+    }
+
+    public function getPackagingMethod(): ?string
+    {
+        return $this->packagingMethod;
+    }
+
+    public function setPackagingMethod(?string $packagingMethod): void
+    {
+        $this->packagingMethod = $packagingMethod;
     }
 }
