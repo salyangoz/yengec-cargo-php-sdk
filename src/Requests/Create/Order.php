@@ -38,7 +38,7 @@ class Order implements OrderInterface
     protected ?string $addressId;
 
     protected ?string $packagingMethod;
-    protected ?string $marketplace;
+    protected ?string $store;
 
     /**
      * @param string $identity
@@ -136,7 +136,7 @@ class Order implements OrderInterface
         $this->setPayOnDelivery($payOnDelivery);
         $this->setPayOnDeliveryMethod($payOnDeliveryMethod);
         $this->setPackagingMethod($packagingMethod);
-        $this->setMarketplace($marketplace);
+        $this->setStore($marketplace);
     }
 
     /**
@@ -285,7 +285,7 @@ class Order implements OrderInterface
             'packaging_method' => $this->getPackagingMethod(),
             'label_description' => $this->getLabelDescription(),
             'pay_on_delivery_method' => $this->getPayOnDeliveryMethod(),
-            'marketplace' => $this->getMarketplace()
+            'store' => $this->getStore()
         ];
     }
 
@@ -659,13 +659,13 @@ class Order implements OrderInterface
         $this->packagingMethod = $packagingMethod;
     }
 
-    public function getMarketplace(): ?string
+    public function getStore(): ?string
     {
-        return $this->marketplace;
+        return $this->store;
     }
 
-    public function setMarketplace(?string $marketplace): void
+    public function setStore(?string $store): void
     {
-        $this->marketplace = $marketplace;
+        $this->store = $store;
     }
 }
