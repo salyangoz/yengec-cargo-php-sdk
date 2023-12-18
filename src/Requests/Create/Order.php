@@ -38,9 +38,9 @@ class Order implements OrderInterface
     protected ?string $addressId;
 
     protected ?string $packagingMethod;
+    protected ?string $marketplace;
 
     /**
-     * Order constructor.
      * @param string $identity
      * @param string $receiver
      * @param string $address
@@ -58,7 +58,7 @@ class Order implements OrderInterface
      * @param string|null $exportReason
      * @param string|null $method
      * @param string|null $postalCode
-     * @param OrderSender|null $sender
+     * @param OrderSender $sender
      * @param OrderItemCollection|null $orderItems
      * @param string $id
      * @param string|null $invoiceCode
@@ -71,6 +71,7 @@ class Order implements OrderInterface
      * @param bool $payOnDelivery
      * @param string|null $payOnDeliveryMethod
      * @param string|null $packagingMethod
+     * @param string|null $marketplace
      */
     public function __construct(
         string $identity,
@@ -102,7 +103,8 @@ class Order implements OrderInterface
         ?string $addressId = null,
         bool $payOnDelivery = false,
         ?string $payOnDeliveryMethod = null,
-        ?string $packagingMethod = null
+        ?string $packagingMethod = null,
+        ?string $marketplace = null
     ) {
         $this->setIdentity($identity);
         $this->setReceiver($receiver);
@@ -134,6 +136,7 @@ class Order implements OrderInterface
         $this->setPayOnDelivery($payOnDelivery);
         $this->setPayOnDeliveryMethod($payOnDeliveryMethod);
         $this->setPackagingMethod($packagingMethod);
+        $this->setMarketplace($marketplace);
     }
 
     /**
@@ -282,6 +285,7 @@ class Order implements OrderInterface
             'packaging_method' => $this->getPackagingMethod(),
             'label_description' => $this->getLabelDescription(),
             'pay_on_delivery_method' => $this->getPayOnDeliveryMethod(),
+            'marketplace' => $this->getMarketplace()
         ];
     }
 
@@ -653,5 +657,15 @@ class Order implements OrderInterface
     public function setPackagingMethod(?string $packagingMethod): void
     {
         $this->packagingMethod = $packagingMethod;
+    }
+
+    public function getMarketplace(): ?string
+    {
+        return $this->marketplace;
+    }
+
+    public function setMarketplace(?string $marketplace): void
+    {
+        $this->marketplace = $marketplace;
     }
 }
