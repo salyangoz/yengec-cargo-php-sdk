@@ -15,6 +15,7 @@ class OrderSender implements ArrayableInterface
     private ?string $pva;
     private ?string $ioss;
     private ?string $postalCode;
+    private ?string $email;
 
     /**
      * OrderSender constructor.
@@ -28,6 +29,8 @@ class OrderSender implements ArrayableInterface
      * @param string|null $voec
      * @param string|null $pva
      * @param string|null $ioss
+     * @param string|null $postalCode
+     * @param string|null $email
      */
     public function __construct(
         string $name,
@@ -40,7 +43,8 @@ class OrderSender implements ArrayableInterface
         ?string $voec,
         ?string $pva,
         ?string $ioss,
-        ?string $postalCode
+        ?string $postalCode,
+        ?string $email
     ) {
         $this->name = $name;
         $this->address = $address;
@@ -53,6 +57,7 @@ class OrderSender implements ArrayableInterface
         $this->pva = $pva;
         $this->ioss = $ioss;
         $this->postalCode = $postalCode;
+        $this->email = $email;
     }
 
     /**
@@ -233,7 +238,8 @@ class OrderSender implements ArrayableInterface
             'ioss' => $this->getIoss(),
             'voec' => $this->getVoec(),
             'pva' => $this->getPva(),
-            'postal_code' => $this->getPostalCode()
+            'postal_code' => $this->getPostalCode(),
+            'email' => $this->getEmail(),
         ];
     }
 
@@ -245,5 +251,15 @@ class OrderSender implements ArrayableInterface
     public function setPostalCode(?string $postalCode): void
     {
         $this->postalCode = $postalCode;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): void
+    {
+        $this->email = $email;
     }
 }
