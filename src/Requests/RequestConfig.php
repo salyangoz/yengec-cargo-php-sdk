@@ -26,18 +26,29 @@ class RequestConfig implements RequestConfigInterface
     public ConfigInterface $config;
 
     /**
-     * RequestConfig constructor.
+     * @var bool|null
+     */
+    public ?bool $originalLabel = false;
+
+    /**
      * @param string $mode
      * @param string $language
      * @param string $service
      * @param ConfigInterface $config
+     * @param bool $originalLabel
      */
-    public function __construct(string $mode, string $language, string $service, ConfigInterface $config)
-    {
+    public function __construct(
+        string $mode,
+        string $language,
+        string $service,
+        ConfigInterface $config,
+        bool $originalLabel = false
+    ) {
         $this->setMode($mode);
         $this->setLanguage($language);
         $this->setService($service);
         $this->setConfig($config);
+        $this->setOriginalLabel($originalLabel);
     }
 
     /**
@@ -102,5 +113,22 @@ class RequestConfig implements RequestConfigInterface
     public function setConfig(ConfigInterface $config): void
     {
         $this->config = $config;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getOriginalLabel(): ?bool
+    {
+        return $this->originalLabel;
+    }
+
+    /**
+     * @param bool $originalLabel
+     * @return void
+     */
+    public function setOriginalLabel(bool $originalLabel): void
+    {
+        $this->originalLabel = $originalLabel;
     }
 }
