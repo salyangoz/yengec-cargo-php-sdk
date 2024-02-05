@@ -14,6 +14,7 @@ abstract class Request implements RequestInterface
     protected string $mode;
     protected ConfigInterface $config;
     protected Client $httpClient;
+    protected ?bool $originalLabel = false;
 
     public function __construct(RequestConfigInterface $requestConfig)
     {
@@ -21,6 +22,7 @@ abstract class Request implements RequestInterface
         $this->setLanguage($requestConfig->getLanguage());
         $this->setService($requestConfig->getService());
         $this->setConfig($requestConfig->getConfig());
+        $this->setOriginalLabel($requestConfig->getOriginalLabel());
         $this->httpClient = new Client([
             'base_uri' => $requestConfig->getMode() == 'live' ? self::BASE_URI : self::TEST_BASE_URI,
             'timeout' => 60
@@ -103,6 +105,17 @@ abstract class Request implements RequestInterface
         return static::PATH;
     }
 
+
+    public function getOriginalLabel(): ?bool
+    {
+        return $this->originalLabel;
+    }
+
+    public function setOriginalLabel(?bool $originalLabel): void
+    {
+        $this->originalLabel = $originalLabel;
+    }
+
     /**
      * @return array
      */
@@ -112,7 +125,8 @@ abstract class Request implements RequestInterface
             'service'  => $this->getService(),
             'mode'     => $this->getMode(),
             'config'   => $this->getConfig()->get($this->getService()),
-            'language' => $this->getLanguage()
+            'language' => $this->getLanguage(),
+            'original_label' => $this->getOriginalLabel()
         ];
     }
 }
