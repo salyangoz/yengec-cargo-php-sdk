@@ -40,7 +40,7 @@ class Order implements OrderInterface
     protected ?string $packagingMethod;
     protected ?string $store;
 
-    protected ?bool $originalBarcode = false;
+    protected ?bool $originalLabel = false;
 
     /**
      * @param string $identity
@@ -74,7 +74,7 @@ class Order implements OrderInterface
      * @param string|null $payOnDeliveryMethod
      * @param string|null $packagingMethod
      * @param string|null $marketplace
-     * @param bool|null $originalBarcode
+     * @param bool|null $originalLabel
      */
     public function __construct(
         string $identity,
@@ -108,7 +108,7 @@ class Order implements OrderInterface
         ?string $payOnDeliveryMethod = null,
         ?string $packagingMethod = null,
         ?string $marketplace = null,
-        ?bool $originalBarcode = false
+        ?bool $originalLabel = false
     ) {
         $this->setIdentity($identity);
         $this->setReceiver($receiver);
@@ -141,7 +141,7 @@ class Order implements OrderInterface
         $this->setPayOnDeliveryMethod($payOnDeliveryMethod);
         $this->setPackagingMethod($packagingMethod);
         $this->setStore($marketplace);
-        $this->setOriginalBarcode($originalBarcode);
+        $this->setOriginalLabel($originalLabel);
     }
 
     /**
@@ -291,7 +291,7 @@ class Order implements OrderInterface
             'label_description' => $this->getLabelDescription(),
             'pay_on_delivery_method' => $this->getPayOnDeliveryMethod(),
             'store' => $this->getStore(),
-            'original_barcode' => $this->getOriginalBarcode()
+            'original_label' => $this->getOriginalLabel()
         ];
     }
 
@@ -675,13 +675,13 @@ class Order implements OrderInterface
         $this->store = $store;
     }
 
-    public function getOriginalBarcode(): ?bool
+    public function getOriginalLabel(): ?bool
     {
-        return $this->originalBarcode;
+        return $this->originalLabel;
     }
 
-    public function setOriginalBarcode(?bool $originalBarcode): void
+    public function setOriginalLabel(?bool $originalLabel): void
     {
-        $this->originalBarcode = $originalBarcode;
+        $this->originalLabel = $originalLabel;
     }
 }
