@@ -43,15 +43,4 @@ interface RequestConfigInterface
      * @param ConfigInterface $config
      */
     public function setConfig(ConfigInterface $config): void;
-
-    /**
-     * @return bool|null
-     */
-    public function getOriginalLabel(): ?bool;
-
-    /**
-     * @param bool $originalLabel
-     * @return void
-     */
-    public function setOriginalLabel(bool $originalLabel): void;
 }

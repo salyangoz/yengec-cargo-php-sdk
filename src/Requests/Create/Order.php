@@ -40,6 +40,8 @@ class Order implements OrderInterface
     protected ?string $packagingMethod;
     protected ?string $store;
 
+    protected ?bool $originalBarcode = false;
+
     /**
      * @param string $identity
      * @param string $receiver
@@ -72,6 +74,7 @@ class Order implements OrderInterface
      * @param string|null $payOnDeliveryMethod
      * @param string|null $packagingMethod
      * @param string|null $marketplace
+     * @param bool|null $originalBarcode
      */
     public function __construct(
         string $identity,
@@ -104,7 +107,8 @@ class Order implements OrderInterface
         bool $payOnDelivery = false,
         ?string $payOnDeliveryMethod = null,
         ?string $packagingMethod = null,
-        ?string $marketplace = null
+        ?string $marketplace = null,
+        ?bool $originalBarcode = false
     ) {
         $this->setIdentity($identity);
         $this->setReceiver($receiver);
@@ -137,6 +141,7 @@ class Order implements OrderInterface
         $this->setPayOnDeliveryMethod($payOnDeliveryMethod);
         $this->setPackagingMethod($packagingMethod);
         $this->setStore($marketplace);
+        $this->setOriginalBarcode($originalBarcode);
     }
 
     /**
@@ -285,7 +290,8 @@ class Order implements OrderInterface
             'packaging_method' => $this->getPackagingMethod(),
             'label_description' => $this->getLabelDescription(),
             'pay_on_delivery_method' => $this->getPayOnDeliveryMethod(),
-            'store' => $this->getStore()
+            'store' => $this->getStore(),
+            'original_barcode' => $this->getOriginalBarcode()
         ];
     }
 
@@ -667,5 +673,15 @@ class Order implements OrderInterface
     public function setStore(?string $store): void
     {
         $this->store = $store;
+    }
+
+    public function getOriginalBarcode(): ?bool
+    {
+        return $this->originalBarcode;
+    }
+
+    public function setOriginalBarcode(?bool $originalBarcode): void
+    {
+        $this->originalBarcode = $originalBarcode;
     }
 }
