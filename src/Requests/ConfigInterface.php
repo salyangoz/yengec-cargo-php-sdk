@@ -35,8 +35,7 @@ interface ConfigInterface
     public function get(string $service): array;
 
     public function setHepsijet(
-        string $username,
-        string $password,
+        string $accessToken,
         string $userCode,
         string $warehouseId,
         string $companyName,
