@@ -42,6 +42,8 @@ class Order implements OrderInterface
 
     protected ?bool $originalLabel = false;
 
+    protected ?string $dutiesPayingBy = null;
+
     /**
      * @param string $identity
      * @param string $receiver
@@ -75,6 +77,7 @@ class Order implements OrderInterface
      * @param string|null $packagingMethod
      * @param string|null $marketplace
      * @param bool|null $originalLabel
+     * @param string|null $dutiesPayingBy
      */
     public function __construct(
         string $identity,
@@ -108,7 +111,8 @@ class Order implements OrderInterface
         ?string $payOnDeliveryMethod = null,
         ?string $packagingMethod = null,
         ?string $marketplace = null,
-        ?bool $originalLabel = false
+        ?bool $originalLabel = false,
+        ?string $dutiesPayingBy = null
     ) {
         $this->setIdentity($identity);
         $this->setReceiver($receiver);
@@ -142,6 +146,7 @@ class Order implements OrderInterface
         $this->setPackagingMethod($packagingMethod);
         $this->setStore($marketplace);
         $this->setOriginalLabel($originalLabel);
+        $this->setDutiesPayingBy($dutiesPayingBy);
     }
 
     /**
@@ -291,7 +296,8 @@ class Order implements OrderInterface
             'label_description' => $this->getLabelDescription(),
             'pay_on_delivery_method' => $this->getPayOnDeliveryMethod(),
             'store' => $this->getStore(),
-            'original_label' => $this->getOriginalLabel()
+            'original_label' => $this->getOriginalLabel(),
+            'duties_paying_by' => $this->getDutiesPayingBy()
         ];
     }
 
@@ -683,5 +689,14 @@ class Order implements OrderInterface
     public function setOriginalLabel(?bool $originalLabel): void
     {
         $this->originalLabel = $originalLabel;
+    }
+
+    public function getDutiesPayingBy(): ?string
+    {
+        return $this->dutiesPayingBy;
+    }
+    public function setDutiesPayingBy(?string $dutiesPayingBy): void
+    {
+        $this->dutiesPayingBy = $dutiesPayingBy;
     }
 }
