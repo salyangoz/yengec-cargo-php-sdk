@@ -41,7 +41,7 @@ class Order implements OrderInterface
     protected ?string $store;
 
     protected ?bool $originalLabel = false;
-
+    protected ?array $smsNotifications = null;
     protected ?string $dutiesPayingBy = null;
 
     /**
@@ -112,7 +112,8 @@ class Order implements OrderInterface
         ?string $packagingMethod = null,
         ?string $marketplace = null,
         ?bool $originalLabel = false,
-        ?string $dutiesPayingBy = null
+        ?string $dutiesPayingBy = null,
+        ?array $smsNotifications = null
     ) {
         $this->setIdentity($identity);
         $this->setReceiver($receiver);
@@ -147,6 +148,7 @@ class Order implements OrderInterface
         $this->setStore($marketplace);
         $this->setOriginalLabel($originalLabel);
         $this->setDutiesPayingBy($dutiesPayingBy);
+        $this->setSmsNotifications($smsNotifications);
     }
 
     /**
@@ -297,7 +299,8 @@ class Order implements OrderInterface
             'pay_on_delivery_method' => $this->getPayOnDeliveryMethod(),
             'store' => $this->getStore(),
             'original_label' => $this->getOriginalLabel(),
-            'duties_paying_by' => $this->getDutiesPayingBy()
+            'duties_paying_by' => $this->getDutiesPayingBy(),
+            'sms_notifications' => $this->getSmsNotifications()
         ];
     }
 
@@ -698,5 +701,14 @@ class Order implements OrderInterface
     public function setDutiesPayingBy(?string $dutiesPayingBy): void
     {
         $this->dutiesPayingBy = $dutiesPayingBy;
+    }
+    public function getSmsNotifications(): ?array
+    {
+        return $this->smsNotifications;
+    }
+
+    public function setSmsNotifications(?array $smsNotifications): void
+    {
+        $this->smsNotifications = $smsNotifications;
     }
 }
