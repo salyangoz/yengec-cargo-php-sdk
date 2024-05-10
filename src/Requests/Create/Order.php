@@ -41,8 +41,7 @@ class Order implements OrderInterface
     protected ?string $store;
 
     protected ?bool $originalLabel = false;
-    protected ?array $smsNotifications;
-
+    protected ?array $smsNotifications = null;
     protected ?string $dutiesPayingBy = null;
 
     /**
