@@ -25,6 +25,8 @@ class RequestConfig implements RequestConfigInterface
      */
     public ConfigInterface $config;
 
+    public ?string $baseUrl = null;
+
     /**
      * @param string $mode
      * @param string $language
@@ -35,12 +37,16 @@ class RequestConfig implements RequestConfigInterface
         string $mode,
         string $language,
         string $service,
-        ConfigInterface $config
+        ConfigInterface $config,
+        ?string $baseUrl = null
     ) {
         $this->setMode($mode);
         $this->setLanguage($language);
         $this->setService($service);
         $this->setConfig($config);
+        if ($baseUrl) {
+            $this->setBaseUrl($baseUrl);
+        }
     }
 
     /**
@@ -105,5 +111,15 @@ class RequestConfig implements RequestConfigInterface
     public function setConfig(ConfigInterface $config): void
     {
         $this->config = $config;
+    }
+
+    public function setBaseUrl(string $basUrl): void
+    {
+        $this->baseUrl = $basUrl;
+    }
+
+    public function getBaseUrl(): ?string
+    {
+        return $this->baseUrl;
     }
 }

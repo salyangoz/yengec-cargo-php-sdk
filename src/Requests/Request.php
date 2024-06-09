@@ -17,12 +17,18 @@ abstract class Request implements RequestInterface
 
     public function __construct(RequestConfigInterface $requestConfig)
     {
+        $baseUrl = $requestConfig->getBaseUrl();
+        if (!$baseUrl) {
+            $baseUrl = $requestConfig->getMode() == 'live' ? self::BASE_URI : self::TEST_BASE_URI;
+        }
+
+        print $baseUrl;
         $this->setMode($requestConfig->getMode());
         $this->setLanguage($requestConfig->getLanguage());
         $this->setService($requestConfig->getService());
         $this->setConfig($requestConfig->getConfig());
         $this->httpClient = new Client([
-            'base_uri' => $requestConfig->getMode() == 'live' ? self::BASE_URI : self::TEST_BASE_URI,
+            'base_uri' => $baseUrl,
             'timeout' => 60
         ]);
     }

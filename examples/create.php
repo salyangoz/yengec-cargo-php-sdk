@@ -32,6 +32,7 @@ $requestConfig = new RequestConfig(
     'hepsijet',
     $cargoService
 );
+$requestConfig->setBaseUrl('http://cargo-service');
 
 
 // Burada kargoya verilecek olan ürünleri belirtiyoruz.
@@ -43,6 +44,7 @@ $orderItemCollection->add(new OrderItem(
     100,
     '123456789',
     1,
+    null,
 ));
 
 // Şimdi kargoların içeriğini belirleyelim.
@@ -56,15 +58,17 @@ $orders->add(
         '05555555555', // Alıcı telefonu
         'İstanbul', // Alıcı şehri
         'Kadıköy', // Alıcı ilçesi
+        'Kadıköy',
         'yengec_test@yengec.co', // Alıcı emaili
         Carbon::createFromFormat('d/m/Y', '28/04/2023'), // Kargo gönderim tarihi
         'TR', // Alıcı ülke kodu
         'TRY', // Alıcı para birimi
         100, // Alıcı toplam tutarı
-        'KARGO', // Kargo gönderim yöntemi
+        0, // Kargo gönderim yöntemi
         'SATIS',
         'HX_STD', // Kargo gönderim yöntemi. hepsijet için zorunlu.
         '34700',
+        null,
         new OrderSender(
             'Yengeç',
             "Yengeç Adres",
@@ -76,6 +80,8 @@ $orders->add(
             "123456789",
             "123456789",
             "123456789",
+            null,
+            null,
         ),
         $orderItemCollection,
         '123456789',
@@ -89,6 +95,7 @@ $orders->add(
             'Kadıköy',
             'İstanbul',
             'Türkiye',
+            null,
         ),
         10,
         0,
@@ -98,14 +105,23 @@ $orders->add(
             "Kadıköy",
             "Yengeç Adres",
             "05555555555",
+            null,
+            null,
         ),
         '123456789',
+        false,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
     )
 );
 
 // Şimdi kargoları oluşturalım.
 
-$client = new Client($requestConfig);
+$client = new Client();
 
 
 $create = $client->create(

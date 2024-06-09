@@ -43,4 +43,8 @@ interface RequestConfigInterface
      * @param ConfigInterface $config
      */
     public function setConfig(ConfigInterface $config): void;
+
+    public function setBaseUrl(string $basUrl): void;
+
+    public function getBaseUrl(): ?string;
 }

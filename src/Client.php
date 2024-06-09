@@ -32,6 +32,7 @@ use Yengec\Cargo\Requests\Create\OrderCollectionInterface;
  */
 class Client
 {
+
     /**
      * @param RequestConfigInterface $requestConfig
      * @throws BadRequestException
@@ -55,7 +56,7 @@ class Client
      * @throws BadRequestException
      * @throws InvalidRequestException
      * @throws InvalidResponseException
-     * @throws ServiceConfigException
+     * @throws ServiceConfigException|InvalidAddressException
      */
     public static function create(
         RequestConfigInterface $requestConfig,
