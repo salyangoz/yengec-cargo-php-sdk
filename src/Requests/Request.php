@@ -22,7 +22,6 @@ abstract class Request implements RequestInterface
             $baseUrl = $requestConfig->getMode() == 'live' ? self::BASE_URI : self::TEST_BASE_URI;
         }
 
-        print $baseUrl;
         $this->setMode($requestConfig->getMode());
         $this->setLanguage($requestConfig->getLanguage());
         $this->setService($requestConfig->getService());
