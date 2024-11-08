@@ -3,6 +3,7 @@
 namespace Yengec\Cargo\Requests;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
 
 abstract class Request implements RequestInterface
 {
@@ -28,7 +29,8 @@ abstract class Request implements RequestInterface
         $this->setConfig($requestConfig->getConfig());
         $this->httpClient = new Client([
             'base_uri' => $baseUrl,
-            'timeout' => 60
+            'timeout' => 60,
+            'handler' => $requestConfig->getHandler(),
         ]);
     }
 

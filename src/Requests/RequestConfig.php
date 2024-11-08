@@ -2,6 +2,8 @@
 
 namespace Yengec\Cargo\Requests;
 
+use GuzzleHttp\HandlerStack;
+
 /**
  * Class RequestConfig
  * @package Yengec\Cargo\Requests
@@ -27,18 +29,23 @@ class RequestConfig implements RequestConfigInterface
 
     public ?string $baseUrl = null;
 
+    public ?HandlerStack $handler = null;
+
     /**
      * @param string $mode
      * @param string $language
      * @param string $service
      * @param ConfigInterface $config
+     * @param string|null $baseUrl
+     * @param HandlerStack|null $handler
      */
     public function __construct(
         string $mode,
         string $language,
         string $service,
         ConfigInterface $config,
-        ?string $baseUrl = null
+        ?string $baseUrl = null,
+        ?HandlerStack $handler = null
     ) {
         $this->setMode($mode);
         $this->setLanguage($language);
@@ -46,6 +53,9 @@ class RequestConfig implements RequestConfigInterface
         $this->setConfig($config);
         if ($baseUrl) {
             $this->setBaseUrl($baseUrl);
+        }
+        if ($handler) {
+            $this->setHandler($handler);
         }
     }
 
@@ -121,5 +131,15 @@ class RequestConfig implements RequestConfigInterface
     public function getBaseUrl(): ?string
     {
         return $this->baseUrl;
+    }
+
+    public function setHandler(HandlerStack $handler): void
+    {
+        $this->handler = $handler;
+    }
+
+    public function getHandler(): ?HandlerStack
+    {
+        return $this->handler;
     }
 }
