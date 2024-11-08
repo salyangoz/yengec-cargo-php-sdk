@@ -2,6 +2,8 @@
 
 namespace Yengec\Cargo\Requests;
 
+use GuzzleHttp\HandlerStack;
+
 interface RequestConfigInterface
 {
     /**
@@ -47,4 +49,8 @@ interface RequestConfigInterface
     public function setBaseUrl(string $basUrl): void;
 
     public function getBaseUrl(): ?string;
+
+    public function setHandler(HandlerStack $handler): void;
+
+    public function getHandler() : ?HandlerStack;
 }
