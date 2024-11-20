@@ -58,7 +58,7 @@ class RequestConfig implements RequestConfigInterface
         }
         if ($handler) {
             $this->setHandler($handler);
-            $this->setLog(true);
+            $this->setLogActive(true);
         }
     }
 
@@ -146,12 +146,12 @@ class RequestConfig implements RequestConfigInterface
         return $this->handler;
     }
 
-    public function isLog(): bool
+    public function isLogActive(): bool
     {
         return $this->log;
     }
 
-    public function setLog(bool $log): void
+    public function setLogActive(bool $log): void
     {
         $this->log = $log;
     }
