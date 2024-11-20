@@ -31,6 +31,8 @@ class RequestConfig implements RequestConfigInterface
 
     public ?HandlerStack $handler = null;
 
+    public bool $log = false;
+
     /**
      * @param string $mode
      * @param string $language
@@ -56,6 +58,7 @@ class RequestConfig implements RequestConfigInterface
         }
         if ($handler) {
             $this->setHandler($handler);
+            $this->setLog(true);
         }
     }
 
@@ -141,5 +144,15 @@ class RequestConfig implements RequestConfigInterface
     public function getHandler(): ?HandlerStack
     {
         return $this->handler;
+    }
+
+    public function isLog(): bool
+    {
+        return $this->log;
+    }
+
+    public function setLog(bool $log): void
+    {
+        $this->log = $log;
     }
 }
