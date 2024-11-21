@@ -15,6 +15,7 @@ abstract class Request implements RequestInterface
     protected string $mode;
     protected ConfigInterface $config;
     protected Client $httpClient;
+    protected bool $log = false;
 
     public function __construct(RequestConfigInterface $requestConfig)
     {
@@ -27,6 +28,8 @@ abstract class Request implements RequestInterface
         $this->setLanguage($requestConfig->getLanguage());
         $this->setService($requestConfig->getService());
         $this->setConfig($requestConfig->getConfig());
+        $this->setLogActive($requestConfig->isLogActive());
+
         $this->httpClient = new Client([
             'base_uri' => $baseUrl,
             'timeout' => 60,
@@ -110,6 +113,16 @@ abstract class Request implements RequestInterface
         return static::PATH;
     }
 
+    public function isLogActive(): bool
+    {
+        return $this->log;
+    }
+
+    public function setLogActive(bool $log): void
+    {
+        $this->log = $log;
+    }
+
     /**
      * @return array
      */
@@ -119,7 +132,8 @@ abstract class Request implements RequestInterface
             'service'  => $this->getService(),
             'mode'     => $this->getMode(),
             'config'   => $this->getConfig()->get($this->getService()),
-            'language' => $this->getLanguage()
+            'language' => $this->getLanguage(),
+            'log'      => $this->isLogActive()
         ];
     }
 }
