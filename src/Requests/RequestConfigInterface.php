@@ -53,4 +53,8 @@ interface RequestConfigInterface
     public function setHandler(HandlerStack $handler): void;
 
     public function getHandler() : ?HandlerStack;
+
+    public function setLogActive(bool $log): void;
+
+    public function isLogActive() : bool;
 }
