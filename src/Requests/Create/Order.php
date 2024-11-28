@@ -44,6 +44,8 @@ class Order implements OrderInterface
     protected ?array $smsNotifications = null;
     protected ?string $dutiesPayingBy = null;
 
+    protected ?string $invoiceUrl = null;
+
     /**
      * @param string $identity
      * @param string $receiver
@@ -78,6 +80,7 @@ class Order implements OrderInterface
      * @param string|null $marketplace
      * @param bool|null $originalLabel
      * @param string|null $dutiesPayingBy
+     * @param array|null $smsNotifications
      */
     public function __construct(
         string $identity,
@@ -272,6 +275,7 @@ class Order implements OrderInterface
             'duty'      => $this->getDuty(),
             'total'     => $this->getTotal(),
             'items'     => $this->getItems()->toArray(),
+            'store'     => $this->getStore(),
             'method'    => $this->getMethod(),
             'sender'    => $this->getSender() ? $this->getSender()->toArray() : [],
             'ship_at'   => $this->getShipAt() ? $this->getShipAt()->format('Y-m-d H:i') : null,
@@ -287,7 +291,8 @@ class Order implements OrderInterface
             'address_id'    => $this->getAddressId(),
             'postal_code'   => $this->getPostalCode(),
             'cargo_price'   => $this->getCargoPrice(),
-            'neighborhood' => $this->getNeighborhood(),
+            'invoice_url'   => $this->getInvoiceUrl(),
+            'neighborhood'  => $this->getNeighborhood(),
             'country_code'  => $this->getCountryCode(),
             'invoice_code'  => $this->getInvoiceCode(),
             'neighbourhood' => $this->getNeighborhood(),
@@ -297,10 +302,9 @@ class Order implements OrderInterface
             'packaging_method' => $this->getPackagingMethod(),
             'label_description' => $this->getLabelDescription(),
             'pay_on_delivery_method' => $this->getPayOnDeliveryMethod(),
-            'store' => $this->getStore(),
             'original_label' => $this->getOriginalLabel(),
             'duties_paying_by' => $this->getDutiesPayingBy(),
-            'sms_notifications' => $this->getSmsNotifications()
+            'sms_notifications' => $this->getSmsNotifications(),
         ];
     }
 
@@ -710,5 +714,15 @@ class Order implements OrderInterface
     public function setSmsNotifications(?array $smsNotifications): void
     {
         $this->smsNotifications = $smsNotifications;
+    }
+
+    public function getInvoiceUrl(): ?string
+    {
+        return $this->invoiceUrl;
+    }
+
+    public function setInvoiceUrl(?string $invoiceUrl): void
+    {
+        $this->invoiceUrl = $invoiceUrl;
     }
 }

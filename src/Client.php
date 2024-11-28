@@ -7,6 +7,7 @@ use Yengec\Cargo\Exceptions\ServiceException;
 use Yengec\Cargo\Requests\CancelRequest;
 use Yengec\Cargo\Requests\Create\OrderInterface;
 use Yengec\Cargo\Requests\CreateOneRequest;
+use Yengec\Cargo\Requests\InvoiceRequest;
 use Yengec\Cargo\Requests\QueryOneRequest;
 use Yengec\Cargo\Responses\CreateOneResponse;
 use Yengec\Cargo\Responses\QueryOneResponse;
@@ -129,6 +130,21 @@ class Client
     ): void {
         $request = new CancelRequest($requestConfig);
         $request->setCode($code);
+
+        self::withHandler(function () use ($request) {
+            $request->send();
+        });
+    }
+
+
+    public static function invoice(
+        RequestConfigInterface $requestConfig,
+        string $code,
+        string $invoiceUrl
+    ): void {
+        $request = new InvoiceRequest($requestConfig);
+        $request->setCode($code);
+        $request->setInvoiceUrl($invoiceUrl);
 
         self::withHandler(function () use ($request) {
             $request->send();
