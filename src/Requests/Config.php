@@ -27,6 +27,7 @@ class Config implements ConfigInterface
     public const SERVICE_SENDEO = 'sendeo';
     public const SERVICE_HEPSIJET = 'hepsijet';
     public const SERVICE_FEDEX = 'fedex';
+    public const SERVICE_DHL = 'dhl';
 
     /**
      * @param string $username
@@ -347,5 +348,30 @@ class Config implements ConfigInterface
         }
 
         return $this->configs[self::SERVICE_FEDEX];
+    }
+
+    public function setDhl(
+        string $username,
+        string $password,
+        string $userCode
+    ): void
+    {
+        $this->configs[self::SERVICE_DHL] = [
+            'username' => $username,
+            'password' => $password,
+            'user_code' => $userCode,
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getDhl(): array
+    {
+        if (!isset($this->configs[self::SERVICE_DHL])) {
+            return [];
+        }
+
+        return $this->configs[self::SERVICE_DHL];
     }
 }
