@@ -34,6 +34,9 @@ abstract class Request implements RequestInterface
             'base_uri' => $baseUrl,
             'timeout' => 60,
             'handler' => $requestConfig->getHandler(),
+            'headers' => [
+                'Accept-Language' => $requestConfig->getLanguage()
+            ]
         ]);
     }
 

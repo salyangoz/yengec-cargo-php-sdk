@@ -78,6 +78,7 @@ $order = new Order(
         "123456789",
         "123456789",
         null,
+        'o@yedincisenol.com'
     ),
     $orderItemCollection,
     '123456789',
@@ -110,7 +111,7 @@ $order = new Order(
     null,
 );
 
-$client = new Client($requestConfig);
+$client = new Client();
 $create = $client->createOne(
     $requestConfig,
     $order
