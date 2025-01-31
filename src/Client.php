@@ -50,27 +50,6 @@ class Client
     }
 
     /**
-     * Create new shipping orders
-     * @param RequestConfigInterface $requestConfig
-     * @param OrderCollectionInterface $orders
-     * @return CreateResponse
-     * @throws BadRequestException
-     * @throws InvalidRequestException
-     * @throws InvalidResponseException
-     * @throws ServiceConfigException|InvalidAddressException
-     */
-    public static function create(
-        RequestConfigInterface $requestConfig,
-        OrderCollectionInterface $orders
-    ): CreateResponse {
-        $request = new CreateRequest($requestConfig);
-        $request->setOrders($orders);
-        return self::withHandler(function () use ($request) {
-            return new CreateResponse($request->send());
-        });
-    }
-
-    /**
      * @param RequestConfigInterface $requestConfig
      * @param OrderInterface $order
      * @return CreateOneResponse
@@ -88,27 +67,6 @@ class Client
         $request->setOrder($order);
         return self::withHandler(function () use ($request) {
             return new CreateOneResponse($request->send());
-        });
-    }
-
-    /**
-     * @param RequestConfigInterface $requestConfig
-     * @param Requests\Query\OrderCollectionInterface $orders
-     * @return QueryResponse
-     * @throws BadRequestException
-     * @throws InvalidRequestException
-     * @throws InvalidResponseException
-     * @throws ServiceConfigException
-     */
-    public static function query(
-        RequestConfigInterface $requestConfig,
-        Requests\Query\OrderCollectionInterface $orders
-    ): QueryResponse {
-        $request = new QueryRequest($requestConfig);
-        $request->setOrders($orders);
-
-        return self::withHandler(function () use ($request) {
-            return new QueryResponse($request->send());
         });
     }
 
