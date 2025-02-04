@@ -13,11 +13,7 @@ use Yengec\Cargo\Responses\CreateOneResponse;
 use Yengec\Cargo\Responses\QueryOneResponse;
 use Yengec\Cargo\Responses\Response;
 use Yengec\Cargo\Requests\TestRequest;
-use Yengec\Cargo\Requests\QueryRequest;
-use Yengec\Cargo\Requests\CreateRequest;
 use GuzzleHttp\Exception\ClientException;
-use Yengec\Cargo\Responses\QueryResponse;
-use Yengec\Cargo\Responses\CreateResponse;
 use Yengec\Cargo\Responses\ResponseInterface;
 use Yengec\Cargo\Exceptions\BadRequestException;
 use Yengec\Cargo\Requests\RequestConfigInterface;
@@ -25,7 +21,6 @@ use Yengec\Cargo\Exceptions\ServiceConfigException;
 use Yengec\Cargo\Exceptions\InvalidRequestException;
 use Yengec\Cargo\Exceptions\InvalidAddressException;
 use Yengec\Cargo\Exceptions\InvalidResponseException;
-use Yengec\Cargo\Requests\Create\OrderCollectionInterface;
 
 /**
  * Class Client
@@ -39,34 +34,13 @@ class Client
      * @throws BadRequestException
      * @throws InvalidRequestException
      * @throws InvalidResponseException
-     * @throws ServiceConfigException
+     * @throws ServiceConfigException|InvalidAddressException|ServiceException
      */
     public static function test(RequestConfigInterface $requestConfig): void
     {
         $request = new TestRequest($requestConfig);
         self::withHandler(function () use ($request) {
             $request->send();
-        });
-    }
-
-    /**
-     * Create new shipping orders
-     * @param RequestConfigInterface $requestConfig
-     * @param OrderCollectionInterface $orders
-     * @return CreateResponse
-     * @throws BadRequestException
-     * @throws InvalidRequestException
-     * @throws InvalidResponseException
-     * @throws ServiceConfigException|InvalidAddressException
-     */
-    public static function create(
-        RequestConfigInterface $requestConfig,
-        OrderCollectionInterface $orders
-    ): CreateResponse {
-        $request = new CreateRequest($requestConfig);
-        $request->setOrders($orders);
-        return self::withHandler(function () use ($request) {
-            return new CreateResponse($request->send());
         });
     }
 
@@ -78,7 +52,7 @@ class Client
      * @throws InvalidAddressException
      * @throws InvalidRequestException
      * @throws InvalidResponseException
-     * @throws ServiceConfigException
+     * @throws ServiceConfigException|ServiceException
      */
     public static function createOne(
         RequestConfigInterface $requestConfig,
@@ -88,27 +62,6 @@ class Client
         $request->setOrder($order);
         return self::withHandler(function () use ($request) {
             return new CreateOneResponse($request->send());
-        });
-    }
-
-    /**
-     * @param RequestConfigInterface $requestConfig
-     * @param Requests\Query\OrderCollectionInterface $orders
-     * @return QueryResponse
-     * @throws BadRequestException
-     * @throws InvalidRequestException
-     * @throws InvalidResponseException
-     * @throws ServiceConfigException
-     */
-    public static function query(
-        RequestConfigInterface $requestConfig,
-        Requests\Query\OrderCollectionInterface $orders
-    ): QueryResponse {
-        $request = new QueryRequest($requestConfig);
-        $request->setOrders($orders);
-
-        return self::withHandler(function () use ($request) {
-            return new QueryResponse($request->send());
         });
     }
 
@@ -157,7 +110,7 @@ class Client
      * @throws BadRequestException
      * @throws InvalidRequestException
      * @throws InvalidResponseException|ServiceConfigException
-     * @throws InvalidAddressException
+     * @throws InvalidAddressException|ServiceException
      */
     public static function withHandler(Closure $func): ?ResponseInterface
     {
