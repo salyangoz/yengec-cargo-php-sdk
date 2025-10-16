@@ -27,7 +27,11 @@ class Config implements ConfigInterface
     public const SERVICE_SENDEO = 'sendeo';
     public const SERVICE_HEPSIJET = 'hepsijet';
     public const SERVICE_FEDEX = 'fedex';
+
     public const SERVICE_DHL = 'dhl';
+    public const SERVICE_KARGONOMI = 'kargonomi';
+    public const SERVICE_GELIVER = 'geliver';
+    public const SERVICE_BASIT_KARGO = 'basit-kargo';
 
     /**
      * @param string $username
@@ -364,6 +368,25 @@ class Config implements ConfigInterface
     }
 
     /**
+     * @param string $apiToken
+     * @param string $shipmentStrategy
+     * @param string $preferredCarrier
+     * @return void
+     */
+    public function setKargonomi(
+        string $apiToken,
+        string $shipmentStrategy,
+        string $preferredCarrier
+    ): void
+    {
+        $this->configs[self::SERVICE_KARGONOMI] = [
+            'api_token' => $apiToken,
+            'shipment_strategy' => $shipmentStrategy,
+            'preferred_carrier' => $preferredCarrier
+        ];
+    }
+
+    /**
      * @return array
      */
     public function getDhl(): array
@@ -373,5 +396,74 @@ class Config implements ConfigInterface
         }
 
         return $this->configs[self::SERVICE_DHL];
+    }
+
+    public function getKargonomi(): array
+    {
+        if (!isset($this->configs[self::SERVICE_KARGONOMI])) {
+            return [];
+        }
+
+        return $this->configs[self::SERVICE_KARGONOMI];
+    }
+    /**
+     * @param string $apiToken
+     * @param string $shipmentStrategy
+     * @param string $preferredCarrier
+     * @return void
+     */
+    public function setBasitKargo(
+        string $apiToken,
+        string $shipmentStrategy,
+        string $preferredCarrier
+    ): void
+    {
+        $this->configs[self::SERVICE_BASIT_KARGO] = [
+            'api_token' => $apiToken,
+            'shipment_strategy' => $shipmentStrategy,
+            'preferred_carrier' => $preferredCarrier
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getBasitKargo(): array
+    {
+        if (!isset($this->configs[self::SERVICE_BASIT_KARGO])) {
+            return [];
+        }
+
+        return $this->configs[self::SERVICE_BASIT_KARGO];
+    }
+    /**
+     * @param string $apiToken
+     * @param string $shipmentStrategy
+     * @param string $preferredCarrier
+     * @return void
+     */
+    public function setGeliver(
+        string $apiToken,
+        string $shipmentStrategy,
+        string $preferredCarrier
+    ): void
+    {
+        $this->configs[self::SERVICE_GELIVER] = [
+            'api_token' => $apiToken,
+            'shipment_strategy' => $shipmentStrategy,
+            'preferred_carrier' => $preferredCarrier
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getGeliver(): array
+    {
+        if (!isset($this->configs[self::SERVICE_GELIVER])) {
+            return [];
+        }
+
+        return $this->configs[self::SERVICE_GELIVER];
     }
 }
