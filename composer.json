@@ -10,7 +10,7 @@
   "require": {
     "php": ">=7.4",
     "guzzlehttp/guzzle": "^7.9.3",
-    "nesbot/carbon": "2.71.0"
+    "nesbot/carbon": "2.73.0"
   },
   "autoload": {
     "psr-4": {
