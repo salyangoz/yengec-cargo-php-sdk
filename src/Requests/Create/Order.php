@@ -45,6 +45,8 @@ class Order implements OrderInterface
     protected ?string $dutiesPayingBy = null;
 
     protected ?string $invoiceUrl = null;
+    protected ?string $shipmentStrategy = null;
+    protected ?string $shipmentCarrier = null;
 
     /**
      * @param string $identity
@@ -116,7 +118,9 @@ class Order implements OrderInterface
         ?string $marketplace = null,
         ?bool $originalLabel = false,
         ?string $dutiesPayingBy = null,
-        ?array $smsNotifications = null
+        ?array $smsNotifications = null,
+        ?string $shipmentStrategy = null,
+        ?string $shipmentCarrier = null
     ) {
         $this->setIdentity($identity);
         $this->setReceiver($receiver);
@@ -152,6 +156,8 @@ class Order implements OrderInterface
         $this->setOriginalLabel($originalLabel);
         $this->setDutiesPayingBy($dutiesPayingBy);
         $this->setSmsNotifications($smsNotifications);
+        $this->setShipmentCarrier($shipmentCarrier);
+        $this->setShipmentStrategy($shipmentStrategy);
     }
 
     /**
@@ -305,6 +311,8 @@ class Order implements OrderInterface
             'original_label' => $this->getOriginalLabel(),
             'duties_paying_by' => $this->getDutiesPayingBy(),
             'sms_notifications' => $this->getSmsNotifications(),
+            'shipment_strategy' => $this->getShipmentStrategy(),
+            'shipment_carrier' => $this->getShipmentCarrier(),
         ];
     }
 
@@ -724,5 +732,37 @@ class Order implements OrderInterface
     public function setInvoiceUrl(?string $invoiceUrl): void
     {
         $this->invoiceUrl = $invoiceUrl;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getShipmentCarrier(): ?string
+    {
+        return $this->shipmentCarrier;
+    }
+
+    /**
+     * @param string|null $shipmentCarrier
+     */
+    public function setShipmentCarrier(?string $shipmentCarrier): void
+    {
+        $this->shipmentCarrier = $shipmentCarrier;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getShipmentStrategy(): ?string
+    {
+        return $this->shipmentStrategy;
+    }
+
+    /**
+     * @param string|null $shipmentStrategy
+     */
+    public function setShipmentStrategy(?string $shipmentStrategy): void
+    {
+        $this->shipmentStrategy = $shipmentStrategy;
     }
 }
