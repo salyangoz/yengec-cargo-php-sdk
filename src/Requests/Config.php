@@ -470,7 +470,7 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @param string $apiToken
+     * @param string $accessToken
      * @param string $shipmentStrategy
      * @param string $preferredCarrier
      * @return void
