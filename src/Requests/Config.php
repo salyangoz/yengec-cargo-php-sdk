@@ -32,6 +32,7 @@ class Config implements ConfigInterface
     public const SERVICE_KARGONOMI = 'kargonomi';
     public const SERVICE_GELIVER = 'geliver';
     public const SERVICE_BASIT_KARGO = 'basit-kargo';
+    public const SERVICE_NAVLUNGO = 'navlungo';
 
     /**
      * @param string $username
@@ -436,6 +437,7 @@ class Config implements ConfigInterface
 
         return $this->configs[self::SERVICE_BASIT_KARGO];
     }
+
     /**
      * @param string $apiToken
      * @param string $shipmentStrategy
@@ -465,5 +467,36 @@ class Config implements ConfigInterface
         }
 
         return $this->configs[self::SERVICE_GELIVER];
+    }
+
+    /**
+     * @param string $accessToken
+     * @param string $shipmentStrategy
+     * @param string $preferredCarrier
+     * @return void
+     */
+    public function setNavlungo(
+        string $accessToken,
+        string $shipmentStrategy,
+        string $preferredCarrier
+    ): void
+    {
+        $this->configs[self::SERVICE_NAVLUNGO] = [
+            'access_token' => $accessToken,
+            'shipment_strategy' => $shipmentStrategy,
+            'preferred_carrier' => $preferredCarrier
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getNavlungo(): array
+    {
+        if (!isset($this->configs[self::SERVICE_NAVLUNGO])) {
+            return [];
+        }
+
+        return $this->configs[self::SERVICE_NAVLUNGO];
     }
 }
