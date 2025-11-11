@@ -370,20 +370,14 @@ class Config implements ConfigInterface
 
     /**
      * @param string $apiKey
-     * @param string $shipmentStrategy
-     * @param string $preferredCarrier
      * @return void
      */
     public function setKargonomi(
-        string $apiKey,
-        string $shipmentStrategy,
-        string $preferredCarrier
+        string $apiKey
     ): void
     {
         $this->configs[self::SERVICE_KARGONOMI] = [
-            'api_key' => $apiKey,
-            'shipment_strategy' => $shipmentStrategy,
-            'preferred_carrier' => $preferredCarrier
+            'api_key' => $apiKey
         ];
     }
 
@@ -407,22 +401,17 @@ class Config implements ConfigInterface
 
         return $this->configs[self::SERVICE_KARGONOMI];
     }
+
     /**
      * @param string $apiKey
-     * @param string $shipmentStrategy
-     * @param string $preferredCarrier
      * @return void
      */
     public function setBasitKargo(
-        string $apiKey,
-        string $shipmentStrategy,
-        string $preferredCarrier
+        string $apiKey
     ): void
     {
         $this->configs[self::SERVICE_BASIT_KARGO] = [
-            'api_key' => $apiKey,
-            'shipment_strategy' => $shipmentStrategy,
-            'preferred_carrier' => $preferredCarrier
+            'api_key' => $apiKey
         ];
     }
 
@@ -440,20 +429,14 @@ class Config implements ConfigInterface
 
     /**
      * @param string $apiKey
-     * @param string $shipmentStrategy
-     * @param string $preferredCarrier
      * @return void
      */
     public function setGeliver(
-        string $apiKey,
-        string $shipmentStrategy,
-        string $preferredCarrier
+        string $apiKey
     ): void
     {
         $this->configs[self::SERVICE_GELIVER] = [
-            'api_key' => $apiKey,
-            'shipment_strategy' => $shipmentStrategy,
-            'preferred_carrier' => $preferredCarrier
+            'api_key' => $apiKey
         ];
     }
 
@@ -471,20 +454,14 @@ class Config implements ConfigInterface
 
     /**
      * @param string $accessToken
-     * @param string $shipmentStrategy
-     * @param string $preferredCarrier
      * @return void
      */
     public function setNavlungo(
-        string $accessToken,
-        string $shipmentStrategy,
-        string $preferredCarrier
+        string $accessToken
     ): void
     {
         $this->configs[self::SERVICE_NAVLUNGO] = [
-            'access_token' => $accessToken,
-            'shipment_strategy' => $shipmentStrategy,
-            'preferred_carrier' => $preferredCarrier
+            'access_token' => $accessToken
         ];
     }
 
