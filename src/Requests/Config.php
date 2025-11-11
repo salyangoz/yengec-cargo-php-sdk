@@ -369,19 +369,19 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @param string $apiToken
+     * @param string $apiKey
      * @param string $shipmentStrategy
      * @param string $preferredCarrier
      * @return void
      */
     public function setKargonomi(
-        string $apiToken,
+        string $apiKey,
         string $shipmentStrategy,
         string $preferredCarrier
     ): void
     {
         $this->configs[self::SERVICE_KARGONOMI] = [
-            'api_token' => $apiToken,
+            'api_key' => $apiKey,
             'shipment_strategy' => $shipmentStrategy,
             'preferred_carrier' => $preferredCarrier
         ];
@@ -408,19 +408,19 @@ class Config implements ConfigInterface
         return $this->configs[self::SERVICE_KARGONOMI];
     }
     /**
-     * @param string $apiToken
+     * @param string $apiKey
      * @param string $shipmentStrategy
      * @param string $preferredCarrier
      * @return void
      */
     public function setBasitKargo(
-        string $apiToken,
+        string $apiKey,
         string $shipmentStrategy,
         string $preferredCarrier
     ): void
     {
         $this->configs[self::SERVICE_BASIT_KARGO] = [
-            'api_token' => $apiToken,
+            'api_key' => $apiKey,
             'shipment_strategy' => $shipmentStrategy,
             'preferred_carrier' => $preferredCarrier
         ];
@@ -439,19 +439,19 @@ class Config implements ConfigInterface
     }
 
     /**
-     * @param string $apiToken
+     * @param string $apiKey
      * @param string $shipmentStrategy
      * @param string $preferredCarrier
      * @return void
      */
     public function setGeliver(
-        string $apiToken,
+        string $apiKey,
         string $shipmentStrategy,
         string $preferredCarrier
     ): void
     {
         $this->configs[self::SERVICE_GELIVER] = [
-            'api_token' => $apiToken,
+            'api_key' => $apiKey,
             'shipment_strategy' => $shipmentStrategy,
             'preferred_carrier' => $preferredCarrier
         ];
