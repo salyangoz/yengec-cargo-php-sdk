@@ -47,6 +47,7 @@ class Order implements OrderInterface
     protected ?string $invoiceUrl = null;
     protected ?string $shipmentStrategy = null;
     protected ?string $shipmentCarrier = null;
+    protected ?string $shipmentPaymentType = null;
 
     /**
      * @param string $identity
@@ -120,7 +121,8 @@ class Order implements OrderInterface
         ?string $dutiesPayingBy = null,
         ?array $smsNotifications = null,
         ?string $shipmentStrategy = null,
-        ?string $shipmentCarrier = null
+        ?string $shipmentCarrier = null,
+        ?string $shipmentPaymentType = null
     ) {
         $this->setIdentity($identity);
         $this->setReceiver($receiver);
@@ -158,6 +160,7 @@ class Order implements OrderInterface
         $this->setSmsNotifications($smsNotifications);
         $this->setShipmentCarrier($shipmentCarrier);
         $this->setShipmentStrategy($shipmentStrategy);
+        $this->setShipmentPaymentType($shipmentPaymentType);
     }
 
     /**
@@ -313,6 +316,7 @@ class Order implements OrderInterface
             'sms_notifications' => $this->getSmsNotifications(),
             'shipment_strategy' => $this->getShipmentStrategy(),
             'shipment_carrier' => $this->getShipmentCarrier(),
+            'shipment_payment_type' => $this->getShipmentPaymentType(),
         ];
     }
 
@@ -764,5 +768,21 @@ class Order implements OrderInterface
     public function setShipmentStrategy(?string $shipmentStrategy): void
     {
         $this->shipmentStrategy = $shipmentStrategy;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getShipmentPaymentType(): ?string
+    {
+        return $this->shipmentPaymentType;
+    }
+
+    /**
+     * @param string|null $shipmentPaymentType
+     */
+    public function setShipmentPaymentType(?string $shipmentPaymentType): void
+    {
+        $this->shipmentPaymentType = $shipmentPaymentType;
     }
 }
