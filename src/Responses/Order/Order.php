@@ -40,9 +40,13 @@ class Order implements OrderInterface
 
     protected ?string $receipt;
 
-    protected ?string $addressId;
-
     protected ?string $shippingCompany;
+
+    protected ?int $deci;
+
+    protected ?string $parcel;
+
+    protected ?int $packageCount;
 
     /**
      * @param string|null $identity
@@ -64,7 +68,10 @@ class Order implements OrderInterface
         ?string $trackingUrl,
         ?string $label,
         ?string $receipt,
-        ?string $shippingCompany
+        ?string $shippingCompany,
+        ?int $deci,
+        ?string $parcel,
+        ?int $packageCount
     ) {
         $this->setIdentity($identity);
         $this->setStatus($status);
@@ -75,6 +82,9 @@ class Order implements OrderInterface
         $this->setLabel($label);
         $this->setReceipt($receipt);
         $this->setShippingCompany($shippingCompany);
+        $this->setDeci($deci);
+        $this->setParcel($parcel);
+        $this->setPackageCount($packageCount);
     }
 
     /**
@@ -220,5 +230,53 @@ class Order implements OrderInterface
     public function getShippingCompany(): ?string
     {
         return $this->shippingCompany;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getDeci(): ?int
+    {
+        return $this->deci;
+    }
+
+    /**
+     * @param int|null $deci
+     */
+    public function setDeci(?int $deci): void
+    {
+        $this->deci = $deci;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPackageCount(): ?int
+    {
+        return $this->packageCount;
+    }
+
+    /**
+     * @param int|null $packageCount
+     */
+    public function setPackageCount(?int $packageCount): void
+    {
+        $this->packageCount = $packageCount;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getParcel(): ?string
+    {
+        return $this->parcel;
+    }
+
+    /**
+     * @param string|null $parcel
+     */
+    public function setParcel(?string $parcel): void
+    {
+        $this->parcel = $parcel;
     }
 }
