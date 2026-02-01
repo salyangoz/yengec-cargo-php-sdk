@@ -68,9 +68,9 @@ interface OrderInterface
 
     public function getDeci(): ?int;
 
-    public function setParcel(?int $parcel): void;
+    public function setParcel(?string $parcel): void;
 
-    public function getParcel(): ?int;
+    public function getParcel(): ?string;
 
     public function setPackageCount(?int $packageCount): void;
 
