@@ -27,10 +27,6 @@ $requestConfig = new RequestConfig(
 $id = 'ync-21232';
 
 $client = new Client($requestConfig);
-$queryOrders = new OrderCollection();
-
-$queryOrders->add($id);
-
 $query = $client->queryOne(
     $requestConfig,
     $id
