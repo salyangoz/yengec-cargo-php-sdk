@@ -34,7 +34,8 @@ class QueryOneResponse extends Response
             $order['tracking_code'],
             $order['tracking_url'],
             $order['deci'],
-            $order['package_count']
+            $order['package_count'],
+            $order['shipping_company'] ?? null
         ));
     }
 

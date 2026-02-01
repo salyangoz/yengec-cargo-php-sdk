@@ -42,8 +42,9 @@ class Order implements OrderInterface
 
     protected ?string $addressId;
 
+    protected ?string $shippingCompany;
+
     /**
-     * Order constructor.
      * @param string|null $identity
      * @param string|null $status
      * @param string|null $message
@@ -52,6 +53,7 @@ class Order implements OrderInterface
      * @param string|null $trackingUrl
      * @param string|null $label
      * @param string|null $receipt
+     * @param string|null $shippingCompany
      */
     public function __construct(
         ?string $identity,
@@ -61,7 +63,8 @@ class Order implements OrderInterface
         ?string $trackingCode,
         ?string $trackingUrl,
         ?string $label,
-        ?string $receipt
+        ?string $receipt,
+        ?string $shippingCompany
     ) {
         $this->setIdentity($identity);
         $this->setStatus($status);
@@ -71,6 +74,7 @@ class Order implements OrderInterface
         $this->setTrackingUrl($trackingUrl);
         $this->setLabel($label);
         $this->setReceipt($receipt);
+        $this->setShippingCompany($shippingCompany);
     }
 
     /**
@@ -200,5 +204,21 @@ class Order implements OrderInterface
     public function setReceipt(?string $receipt): void
     {
         $this->receipt = $receipt;
+    }
+
+    /**
+     * @param string|null $shippingCompany
+     */
+    public function setShippingCompany(?string $shippingCompany): void
+    {
+        $this->shippingCompany = $shippingCompany;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getShippingCompany(): ?string
+    {
+        return $this->shippingCompany;
     }
 }
