@@ -4,6 +4,7 @@ namespace Yengec\Cargo;
 
 use Closure;
 use Yengec\Cargo\Exceptions\ServiceException;
+use Yengec\Cargo\Exceptions\ServiceUnavailableException;
 use Yengec\Cargo\Requests\CancelRequest;
 use Yengec\Cargo\Requests\Create\OrderInterface;
 use Yengec\Cargo\Requests\CreateOneRequest;
@@ -136,6 +137,8 @@ class Client
                     throw new WarehouseNotFoundException($response->getMessage());
                 case 'CARGO_COMPANY_NOT_FOUND':
                     throw new CargoCompanyNotFoundException($response->getMessage());
+                case 'SERVICE_UNAVAILABLE':
+                    throw new ServiceUnavailableException($response->getMessage());
                 default:
                     throw new InvalidRequestException($response->getMessage());
             }
