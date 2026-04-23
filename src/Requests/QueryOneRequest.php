@@ -3,7 +3,7 @@
 namespace Yengec\Cargo\Requests;
 
 /**
- * Class QueryRequest
+ * Class QueryOneRequest
  * @package Yengec\Cargo\Requests
  */
 class QueryOneRequest extends Request

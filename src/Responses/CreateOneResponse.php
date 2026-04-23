@@ -8,7 +8,7 @@ use Yengec\Cargo\Exceptions\InvalidResponseException;
 use Yengec\Cargo\Responses\Order\OrderInterface;
 
 /**
- * Class CreateResponse
+ * Class CreateOneResponse
  * @package Yengec\Cargo\Responses
  */
 class CreateOneResponse extends Response
@@ -19,7 +19,7 @@ class CreateOneResponse extends Response
     public OrderInterface $order;
 
     /**
-     * CreateResponse constructor.
+     * CreateOneResponse constructor.
      * @param ResponseInterface $response
      * @throws InvalidResponseException
      */

@@ -6,7 +6,7 @@ use Yengec\Cargo\Responses\Order\Order;
 use Yengec\Cargo\Responses\Order\OrderInterface;
 
 /**
- * Class QueryResponse
+ * Class QueryOneResponse
  * @package Yengec\Cargo\Responses
  */
 class QueryOneResponse extends Response
@@ -17,7 +17,7 @@ class QueryOneResponse extends Response
     protected OrderInterface $order;
 
     /**
-     * QueryResponse constructor.
+     * QueryOneResponse constructor.
      * @param \Psr\Http\Message\ResponseInterface $response
      * @throws \Yengec\Cargo\Exceptions\InvalidResponseException
      */

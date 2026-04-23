@@ -4,7 +4,6 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use Yengec\Cargo\Client;
 use Yengec\Cargo\Requests\Config;
-use Yengec\Cargo\Requests\Query\OrderCollection;
 use Yengec\Cargo\Requests\RequestConfig;
 
 $cargoService = new Config();

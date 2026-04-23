@@ -26,7 +26,6 @@ $requestConfig = new RequestConfig(
 $id = 'ync-21232';
 
 $client = new Client($requestConfig);
-$cancel = new \Yengec\Cargo\Requests\CancelRequest($requestConfig, $id);
 
 $client->cancel(
     $requestConfig,

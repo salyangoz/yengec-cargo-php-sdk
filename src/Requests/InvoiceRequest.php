@@ -3,7 +3,7 @@
 namespace Yengec\Cargo\Requests;
 
 /**
- * Class QueryRequest
+ * Class InvoiceRequest
  * @package Yengec\Cargo\Requests
  */
 class InvoiceRequest extends Request

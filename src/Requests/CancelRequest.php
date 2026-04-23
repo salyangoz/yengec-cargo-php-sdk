@@ -3,7 +3,7 @@
 namespace Yengec\Cargo\Requests;
 
 /**
- * Class QueryRequest
+ * Class CancelRequest
  * @package Yengec\Cargo\Requests
  */
 class CancelRequest extends Request
