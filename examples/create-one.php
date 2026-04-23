@@ -7,7 +7,6 @@ use Yengec\Cargo\Client;
 use Yengec\Cargo\Requests\Config;
 use Yengec\Cargo\Requests\Create\Billing;
 use Yengec\Cargo\Requests\Create\Order;
-use Yengec\Cargo\Requests\Create\OrderCollection;
 use Yengec\Cargo\Requests\Create\OrderItem;
 use Yengec\Cargo\Requests\Create\OrderItemCollection;
 use Yengec\Cargo\Requests\Create\OrderSender;
@@ -44,9 +43,6 @@ $orderItemCollection->add(new OrderItem(
     null,
     null
 ));
-
-// Şimdi kargoların içeriğini belirleyelim.
-$orders =  new OrderCollection();
 
 $order = new Order(
     'ync-2662203', // Bu siparişin benzersiz kimliği
