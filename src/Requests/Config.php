@@ -27,8 +27,12 @@ class Config implements ConfigInterface
     public const SERVICE_SENDEO = 'sendeo';
     public const SERVICE_HEPSIJET = 'hepsijet';
     public const SERVICE_FEDEX = 'fedex';
+
     public const SERVICE_DHL = 'dhl';
-    public const SERVICE_DHL_ECOMMERCE = 'dhl-e-commerce';
+    public const SERVICE_KARGONOMI = 'kargonomi';
+    public const SERVICE_GELIVER = 'geliver';
+    public const SERVICE_BASIT_KARGO = 'basit-kargo';
+    public const SERVICE_NAVLUNGO = 'navlungo';
 
     /**
      * @param string $username
@@ -365,6 +369,19 @@ class Config implements ConfigInterface
     }
 
     /**
+     * @param string $apiKey
+     * @return void
+     */
+    public function setKargonomi(
+        string $apiKey
+    ): void
+    {
+        $this->configs[self::SERVICE_KARGONOMI] = [
+            'api_key' => $apiKey
+        ];
+    }
+
+    /**
      * @return array
      */
     public function getDhl(): array
@@ -376,26 +393,87 @@ class Config implements ConfigInterface
         return $this->configs[self::SERVICE_DHL];
     }
 
-    public function setDhlEcommerce(
-        string $username,
-        string $password,
-        string $clientId,
-        string $clientSecret
-    ): void {
-        $this->configs[self::SERVICE_DHL_ECOMMERCE] = [
-            'username' => $username,
-            'password' => $password,
-            'client_id' => $clientId,
-            'client_secret' => $clientSecret,
-        ];
-    }
-
-    public function getDhlEcommerce(): array
+    public function getKargonomi(): array
     {
-        if (!isset($this->configs[self::SERVICE_DHL_ECOMMERCE])) {
+        if (!isset($this->configs[self::SERVICE_KARGONOMI])) {
             return [];
         }
 
-        return $this->configs[self::SERVICE_DHL_ECOMMERCE];
+        return $this->configs[self::SERVICE_KARGONOMI];
+    }
+
+    /**
+     * @param string $apiKey
+     * @return void
+     */
+    public function setBasitKargo(
+        string $apiKey
+    ): void
+    {
+        $this->configs[self::SERVICE_BASIT_KARGO] = [
+            'api_key' => $apiKey
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getBasitKargo(): array
+    {
+        if (!isset($this->configs[self::SERVICE_BASIT_KARGO])) {
+            return [];
+        }
+
+        return $this->configs[self::SERVICE_BASIT_KARGO];
+    }
+
+    /**
+     * @param string $apiKey
+     * @return void
+     */
+    public function setGeliver(
+        string $apiKey
+    ): void
+    {
+        $this->configs[self::SERVICE_GELIVER] = [
+            'api_key' => $apiKey
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getGeliver(): array
+    {
+        if (!isset($this->configs[self::SERVICE_GELIVER])) {
+            return [];
+        }
+
+        return $this->configs[self::SERVICE_GELIVER];
+    }
+
+    /**
+     * @param string $accessToken
+     * @return void
+     */
+    public function setNavlungo(
+        string $accessToken
+    ): void
+    {
+        $this->configs[self::SERVICE_NAVLUNGO] = [
+            'access_token' => $accessToken
+        ];
+    }
+
+    /**
+     * @return array
+     */
+    public function getNavlungo(): array
+    {
+        if (!isset($this->configs[self::SERVICE_NAVLUNGO])) {
+            return [];
+        }
+
+        return $this->configs[self::SERVICE_NAVLUNGO];
     }
 }

@@ -36,7 +36,11 @@ class CreateOneResponse extends Response
             $order['tracking_code'],
             $order['tracking_url'],
             $order['label'],
-            $order['receipt']
+            $order['receipt'],
+            $order['shipping_company'] ?? null,
+            $order['deci'] ?? null,
+            $order['parcel'] ?? null,
+            $order['package_count'] ?? null,
         ));
     }
 

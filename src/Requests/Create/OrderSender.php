@@ -14,11 +14,11 @@ class OrderSender implements ArrayableInterface
     private ?string $voec;
     private ?string $pva;
     private ?string $ioss;
+    private ?string $mid;
     private ?string $postalCode;
     private ?string $email;
 
     /**
-     * OrderSender constructor.
      * @param string $name
      * @param string|null $address
      * @param string|null $city
@@ -31,6 +31,7 @@ class OrderSender implements ArrayableInterface
      * @param string|null $ioss
      * @param string|null $postalCode
      * @param string|null $email
+     * @param string|null $mid
      */
     public function __construct(
         string $name,
@@ -44,7 +45,8 @@ class OrderSender implements ArrayableInterface
         ?string $pva,
         ?string $ioss,
         ?string $postalCode,
-        ?string $email
+        ?string $email,
+        ?string $mid
     ) {
         $this->name = $name;
         $this->address = $address;
@@ -58,6 +60,7 @@ class OrderSender implements ArrayableInterface
         $this->ioss = $ioss;
         $this->postalCode = $postalCode;
         $this->email = $email;
+        $this->mid = $mid;
     }
 
     /**
@@ -238,6 +241,7 @@ class OrderSender implements ArrayableInterface
             'ioss' => $this->getIoss(),
             'voec' => $this->getVoec(),
             'pva' => $this->getPva(),
+            'mid' => $this->getMid(),
             'postal_code' => $this->getPostalCode(),
             'email' => $this->getEmail(),
         ];
@@ -261,5 +265,21 @@ class OrderSender implements ArrayableInterface
     public function setEmail(?string $email): void
     {
         $this->email = $email;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getMid(): ?string
+    {
+        return $this->mid;
+    }
+
+    /**
+     * @param string|null $mid
+     */
+    public function setMid(?string $mid): void
+    {
+        $this->mid = $mid;
     }
 }

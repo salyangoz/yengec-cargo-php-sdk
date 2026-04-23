@@ -40,10 +40,15 @@ class Order implements OrderInterface
 
     protected ?string $receipt;
 
-    protected ?string $addressId;
+    protected ?string $shippingCompany;
+
+    protected ?int $deci;
+
+    protected ?string $parcel;
+
+    protected ?int $packageCount;
 
     /**
-     * Order constructor.
      * @param string|null $identity
      * @param string|null $status
      * @param string|null $message
@@ -52,6 +57,7 @@ class Order implements OrderInterface
      * @param string|null $trackingUrl
      * @param string|null $label
      * @param string|null $receipt
+     * @param string|null $shippingCompany
      */
     public function __construct(
         ?string $identity,
@@ -61,7 +67,11 @@ class Order implements OrderInterface
         ?string $trackingCode,
         ?string $trackingUrl,
         ?string $label,
-        ?string $receipt
+        ?string $receipt,
+        ?string $shippingCompany,
+        ?int $deci,
+        ?string $parcel,
+        ?int $packageCount
     ) {
         $this->setIdentity($identity);
         $this->setStatus($status);
@@ -71,6 +81,10 @@ class Order implements OrderInterface
         $this->setTrackingUrl($trackingUrl);
         $this->setLabel($label);
         $this->setReceipt($receipt);
+        $this->setShippingCompany($shippingCompany);
+        $this->setDeci($deci);
+        $this->setParcel($parcel);
+        $this->setPackageCount($packageCount);
     }
 
     /**
@@ -200,5 +214,69 @@ class Order implements OrderInterface
     public function setReceipt(?string $receipt): void
     {
         $this->receipt = $receipt;
+    }
+
+    /**
+     * @param string|null $shippingCompany
+     */
+    public function setShippingCompany(?string $shippingCompany): void
+    {
+        $this->shippingCompany = $shippingCompany;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getShippingCompany(): ?string
+    {
+        return $this->shippingCompany;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getDeci(): ?int
+    {
+        return $this->deci;
+    }
+
+    /**
+     * @param int|null $deci
+     */
+    public function setDeci(?int $deci): void
+    {
+        $this->deci = $deci;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getPackageCount(): ?int
+    {
+        return $this->packageCount;
+    }
+
+    /**
+     * @param int|null $packageCount
+     */
+    public function setPackageCount(?int $packageCount): void
+    {
+        $this->packageCount = $packageCount;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getParcel(): ?string
+    {
+        return $this->parcel;
+    }
+
+    /**
+     * @param string|null $parcel
+     */
+    public function setParcel(?string $parcel): void
+    {
+        $this->parcel = $parcel;
     }
 }

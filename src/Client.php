@@ -4,6 +4,7 @@ namespace Yengec\Cargo;
 
 use Closure;
 use Yengec\Cargo\Exceptions\ServiceException;
+use Yengec\Cargo\Exceptions\ServiceUnavailableException;
 use Yengec\Cargo\Requests\CancelRequest;
 use Yengec\Cargo\Requests\Create\OrderInterface;
 use Yengec\Cargo\Requests\CreateOneRequest;
@@ -21,6 +22,9 @@ use Yengec\Cargo\Exceptions\ServiceConfigException;
 use Yengec\Cargo\Exceptions\InvalidRequestException;
 use Yengec\Cargo\Exceptions\InvalidAddressException;
 use Yengec\Cargo\Exceptions\InvalidResponseException;
+use Yengec\Cargo\Exceptions\InsufficientBalanceException;
+use Yengec\Cargo\Exceptions\WarehouseNotFoundException;
+use Yengec\Cargo\Exceptions\CargoCompanyNotFoundException;
 
 /**
  * Class Client
@@ -34,7 +38,7 @@ class Client
      * @throws BadRequestException
      * @throws InvalidRequestException
      * @throws InvalidResponseException
-     * @throws ServiceConfigException
+     * @throws ServiceConfigException|InvalidAddressException|ServiceException
      */
     public static function test(RequestConfigInterface $requestConfig): void
     {
@@ -52,7 +56,7 @@ class Client
      * @throws InvalidAddressException
      * @throws InvalidRequestException
      * @throws InvalidResponseException
-     * @throws ServiceConfigException
+     * @throws ServiceConfigException|ServiceException
      */
     public static function createOne(
         RequestConfigInterface $requestConfig,
@@ -110,7 +114,7 @@ class Client
      * @throws BadRequestException
      * @throws InvalidRequestException
      * @throws InvalidResponseException|ServiceConfigException
-     * @throws InvalidAddressException
+     * @throws InvalidAddressException|ServiceException
      */
     public static function withHandler(Closure $func): ?ResponseInterface
     {
@@ -127,6 +131,14 @@ class Client
                     throw new InvalidAddressException($response->getMessage());
                 case 'SERVICE_EXCEPTION':
                     throw new ServiceException($response->getMessage());
+                case 'INSUFFICIENT_BALANCE':
+                    throw new InsufficientBalanceException($response->getMessage());
+                case 'WAREHOUSE_NOT_FOUND':
+                    throw new WarehouseNotFoundException($response->getMessage());
+                case 'CARGO_COMPANY_NOT_FOUND':
+                    throw new CargoCompanyNotFoundException($response->getMessage());
+                case 'SERVICE_UNAVAILABLE':
+                    throw new ServiceUnavailableException($response->getMessage());
                 default:
                     throw new InvalidRequestException($response->getMessage());
             }
