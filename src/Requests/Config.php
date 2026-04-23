@@ -29,6 +29,7 @@ class Config implements ConfigInterface
     public const SERVICE_FEDEX = 'fedex';
 
     public const SERVICE_DHL = 'dhl';
+    public const SERVICE_DHL_ECOMMERCE = 'dhl-e-commerce';
     public const SERVICE_KARGONOMI = 'kargonomi';
     public const SERVICE_GELIVER = 'geliver';
     public const SERVICE_BASIT_KARGO = 'basit-kargo';
@@ -391,6 +392,29 @@ class Config implements ConfigInterface
         }
 
         return $this->configs[self::SERVICE_DHL];
+    }
+
+    public function setDhlEcommerce(
+        string $username,
+        string $password,
+        string $clientId,
+        string $clientSecret
+    ): void {
+        $this->configs[self::SERVICE_DHL_ECOMMERCE] = [
+            'username' => $username,
+            'password' => $password,
+            'client_id' => $clientId,
+            'client_secret' => $clientSecret,
+        ];
+    }
+
+    public function getDhlEcommerce(): array
+    {
+        if (!isset($this->configs[self::SERVICE_DHL_ECOMMERCE])) {
+            return [];
+        }
+
+        return $this->configs[self::SERVICE_DHL_ECOMMERCE];
     }
 
     public function getKargonomi(): array
