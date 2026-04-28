@@ -137,6 +137,8 @@ class Client
                     throw new WarehouseNotFoundException($response->getMessage());
                 case 'CARGO_COMPANY_NOT_FOUND':
                     throw new CargoCompanyNotFoundException($response->getMessage());
+                case 'NO_CHEAPEST_CARRIER':
+                    throw new CargoCompanyNotFoundException($response->getMessage());
                 case 'SERVICE_UNAVAILABLE':
                     throw new ServiceUnavailableException($response->getMessage());
                 default:
